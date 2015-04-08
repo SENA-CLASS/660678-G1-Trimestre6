@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.ejemplo1.anotaciones;
+package edu.co.sena.onlineshop.inegracion.jpa.entities;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,14 +14,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import edu.co.sena.onlineshop.inegracion.jpa.util.EntityManagerHelper;
 
 /**
  *
  * @author hernando
  */
-public class EstudianteAPP {
+public class CatalogoTestJPA {
     
-    public EstudianteAPP() {
+    Catalogo catalogo;
+    EntityManager em;
+    
+    
+    public CatalogoTestJPA() {
     }
     
     @BeforeClass
@@ -34,6 +39,10 @@ public class EstudianteAPP {
     
     @Before
     public void setUp() {
+        catalogo= new Catalogo();
+        catalogo.setDecripcion("catalogo 1 de prueba");
+        catalogo.setNombreCatalogo("catalogo 1 prueba");
+        
     }
     
     @After
@@ -44,19 +53,16 @@ public class EstudianteAPP {
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
-    // public void hello() {}0 P
+    // public void hello() {}
+    
     @Test
-    public void isnertarEstudiante(){
-        Estudiante e1 = new Estudiante();
-        e1.setIdEstudiante("2341234123");
-        e1.setNombre("asdfasdfsdf");
+    public void insertarCatalogo(){
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.co.sena_EjemploJPA_jar_1.0-SNAPSHOTPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.merge(e1);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+        em = EntityManagerHelper.getEntityManager();
+        EntityManagerHelper.beginTransaction();
+        em.persist(catalogo);
+        EntityManagerHelper.commit();
+        EntityManagerHelper.closeEntityManager();
+        
     }
 }

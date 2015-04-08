@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class Estudiante implements Serializable {
     
     @Id
-    @Column (name = "IDESTUDIANTE")
+    @Column (name = "IDESTUDIANTE",length = 45,nullable = false)
     private String idEstudiante;
     
     @Column (name = "NOMBREESTUDIANTE", nullable = false)

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.ejemplo1.anotaciones;
+package edu.co.sena.onlineshop.inegracion.jpa.entities;
 
+import edu.co.sena.onlineshop.inegracion.jpa.util.EntityManagerHelper;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,9 +20,13 @@ import static org.junit.Assert.*;
  *
  * @author hernando
  */
-public class EstudianteAPP {
+public class ProductoTestJPA {
     
-    public EstudianteAPP() {
+    Producto producto;
+    EntityManagerFactory emf;
+    EntityManager em;
+    
+    public ProductoTestJPA() {
     }
     
     @BeforeClass
@@ -34,6 +39,14 @@ public class EstudianteAPP {
     
     @Before
     public void setUp() {
+       producto = new Producto();
+       producto.setIdProducto("00002");
+       producto.setActivo(true);
+       producto.setNombreProducto("nombre producto prueba");
+       producto.setCatalogoIdCatalogo(new Catalogo(1));
+       producto.setCategoriaIdCategoria(new Categoria(1));
+       
+       
     }
     
     @After
@@ -44,19 +57,18 @@ public class EstudianteAPP {
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
-    // public void hello() {}0 P
+    // public void hello() {}
+    
     @Test
-    public void isnertarEstudiante(){
-        Estudiante e1 = new Estudiante();
-        e1.setIdEstudiante("2341234123");
-        e1.setNombre("asdfasdfsdf");
+    public void insertarProducto(){
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.co.sena_EjemploJPA_jar_1.0-SNAPSHOTPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.merge(e1);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+        em = EntityManagerHelper.getEntityManager();
+        EntityManagerHelper.beginTransaction();
+        em.persist(producto);
+        EntityManagerHelper.commit();
+        EntityManagerHelper.closeEntityManager();
+        
+    
     }
+    
 }
