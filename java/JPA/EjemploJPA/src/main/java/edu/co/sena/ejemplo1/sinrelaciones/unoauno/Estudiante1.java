@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.ejemplo1.anotaciones;
+package edu.co.sena.ejemplo1.sinrelaciones.unoauno;
 
+import edu.co.sena.ejemplo1.relaciones.unoauno.*;
+import edu.co.sena.ejemplo1.anotaciones.*;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +20,8 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "ESTUDIANTE", indexes = {@Index(name = "pruebaIndice",columnList = "NOMBREESTUDIANTE,IDESTUDIANTE")})
-public class Estudiante implements Serializable {
+@Table(name = "ESTUDIANTE1", indexes = {@Index(name = "pruebaIndice",columnList = "NOMBREESTUDIANTE,IDESTUDIANTE")})
+public class Estudiante1 implements Serializable {
     
     @Id
     @Column (name = "IDESTUDIANTE",length = 45,nullable = false)
@@ -36,6 +38,9 @@ public class Estudiante implements Serializable {
     
     @Column (name = "DIRECCION", nullable = false, length = 100)
     private String direccion;
+    
+    @Column (name = "IDMATERA", nullable = false, length = 100)
+    private String idMateria;
 
     public String getIdEstudiante() {
         return idEstudiante;
@@ -75,6 +80,14 @@ public class Estudiante implements Serializable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(String idMateria) {
+        this.idMateria = idMateria;
     }
     
     

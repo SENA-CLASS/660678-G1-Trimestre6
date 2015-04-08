@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.ejemplo1.anotaciones;
+package edu.co.sena.ejemplo1.sinrelaciones.unoauno;
 
+import edu.co.sena.ejemplo1.anotaciones.Estudiante;
+import edu.co.sena.ejemplo1.anotaciones.Materia;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,9 +21,9 @@ import static org.junit.Assert.*;
  *
  * @author hernando
  */
-public class EstudianteAPP {
+public class UnoaUnoSRTest {
     
-    public EstudianteAPP() {
+    public UnoaUnoSRTest() {
     }
     
     @BeforeClass
@@ -44,15 +46,16 @@ public class EstudianteAPP {
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
-    // public void hello() {}0 P
+    // public void hello() {}
     @Test
     public void isnertarEstudiante(){
-        Estudiante e1 = new Estudiante();
+        Estudiante1 e1 = new Estudiante1();
         e1.setIdEstudiante("2341234123");
         e1.setNombre("asdfasdfsdf");
         e1.setCorreo("sadfsdfasdf");
         e1.setDireccion("sadfsdfasdf");
         e1.setTelefono("sadfsdfasdf");
+        e1.setIdMateria("2341234123");
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.co.sena_EjemploJPA_jar_1.0-SNAPSHOTPU");
         EntityManager em = emf.createEntityManager();
@@ -64,7 +67,7 @@ public class EstudianteAPP {
     }
     @Test
     public void isnertarMateria(){
-        Materia m1 = new Materia();
+        Materia1 m1 = new Materia1();
         m1.setIdMateria("2341234123");
         m1.setNombre("asdfasdfsdf");
         m1.setDescripcion("sadfsdfasdf");

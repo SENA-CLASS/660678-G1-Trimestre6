@@ -3,6 +3,11 @@
   <persistence-unit name="edu.co.sena_EjemploJPA_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>edu.co.sena.ejemplo1.anotaciones.Estudiante</class>
+    <class>edu.co.sena.ejemplo1.anotaciones.Materia</class>
+    <class>edu.co.sena.ejemplo1.relaciones.unoauno.Estudiante2</class>
+    <class>edu.co.sena.ejemplo1.relaciones.unoauno.Materia2</class>
+    <class>edu.co.sena.ejemplo1.sinrelaciones.unoauno.Estudiante1</class>
+    <class>edu.co.sena.ejemplo1.sinrelaciones.unoauno.Materia1</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa2?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.ejemplo1.anotaciones;
+package edu.co.sena.ejemplo1.relaciones.unoauno;
 
+import edu.co.sena.ejemplo1.anotaciones.*;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +19,8 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "ESTUDIANTE", indexes = {@Index(name = "pruebaIndice",columnList = "NOMBREESTUDIANTE,IDESTUDIANTE")})
-public class Estudiante implements Serializable {
+@Table(name = "ESTUDIANTE2", indexes = {@Index(name = "pruebaIndice",columnList = "NOMBREESTUDIANTE,IDESTUDIANTE")})
+public class Estudiante2 implements Serializable {
     
     @Id
     @Column (name = "IDESTUDIANTE",length = 45,nullable = false)
