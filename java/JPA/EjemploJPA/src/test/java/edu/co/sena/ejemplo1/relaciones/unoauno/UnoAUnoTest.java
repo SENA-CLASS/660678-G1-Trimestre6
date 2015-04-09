@@ -63,21 +63,30 @@ public class UnoAUnoTest {
         m1.setIdMateria("2");
         m1.setNombre("asdfasdfsdf");
         m1.setDescripcion("sadfsdfasdf");
-        
         e1.setMateria(m1);
-        
-        
-        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.co.sena_EjemploJPA_jar_1.0-SNAPSHOTPU");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.merge(e1);
-        
-        
         em.getTransaction().commit();
         em.close();
         emf.close();
-   
+        }
+    
+    @Test
+    public void consulta(){
+    
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.co.sena_EjemploJPA_jar_1.0-SNAPSHOTPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Estudiante2 et = em.find(Materia2.class, "2").getEstudiante();
+        Materia2 mt = em.find(Estudiante2.class, "1").getMateria();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
         
+        System.out.println(et.toString());
+        System.out.println(mt.toString());
+
     }
 }

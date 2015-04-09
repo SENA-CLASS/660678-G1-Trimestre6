@@ -97,5 +97,12 @@ public class Estudiante2 implements Serializable {
     public void setMateria(Materia2 materia) {
         this.materia = materia;
     }
+
+    @Override
+    public String toString() {
+        return "Estudiante2{" + "idEstudiante=" + idEstudiante + ", nombre=" + nombre + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", materia=" + materia.getIdMateria() + '}';
+    }
+
+ 
   
 }

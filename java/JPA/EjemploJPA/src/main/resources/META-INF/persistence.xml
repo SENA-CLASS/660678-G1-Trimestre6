@@ -8,12 +8,13 @@
     <class>edu.co.sena.ejemplo1.relaciones.unoauno.Materia2</class>
     <class>edu.co.sena.ejemplo1.sinrelaciones.unoauno.Estudiante1</class>
     <class>edu.co.sena.ejemplo1.sinrelaciones.unoauno.Materia1</class>
+    <class>edu.co.sena.ejemplo1.anotaciones.Estudiante2</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa2?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="123456789"/>
-      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
       <property name="eclipselink.logging.level.sql" value="FINE"/>
     </properties>
   </persistence-unit>
