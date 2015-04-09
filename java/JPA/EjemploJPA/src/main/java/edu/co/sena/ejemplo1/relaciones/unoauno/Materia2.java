@@ -5,11 +5,15 @@
  */
 package edu.co.sena.ejemplo1.relaciones.unoauno;
 
+import edu.co.sena.ejemplo1.sinrelaciones.unoauno.*;
+import edu.co.sena.ejemplo1.relaciones.unoauno.*;
 import edu.co.sena.ejemplo1.anotaciones.*;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +30,9 @@ public class Materia2 implements Serializable {
     private String nombre;
     @Column (name = "DESCRIPCION",length = 45,nullable = false)
     private String descripcion;
+    
+    
+   
 
     public String getIdMateria() {
         return idMateria;
@@ -50,4 +57,6 @@ public class Materia2 implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+
 }

@@ -5,6 +5,13 @@
  */
 package edu.co.sena.ejemplo1.relaciones.unoauno;
 
+import edu.co.sena.ejemplo1.anotaciones.Estudiante;
+import edu.co.sena.ejemplo1.anotaciones.Materia;
+import edu.co.sena.ejemplo1.sinrelaciones.unoauno.Estudiante1;
+import edu.co.sena.ejemplo1.sinrelaciones.unoauno.Materia1;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,4 +49,35 @@ public class UnoAUnoTest {
     //
     // @Test
     // public void hello() {}
+ @Test
+    public void insertar(){
+        Estudiante2 e1 = new Estudiante2();
+        e1.setIdEstudiante("1");
+        e1.setNombre("asdfasdfsdf");
+        e1.setCorreo("sadfsdfasdf");
+        e1.setDireccion("sadfsdfasdf");
+        e1.setTelefono("sadfsdfasdf");
+        
+        
+        Materia2 m1 = new Materia2();
+        m1.setIdMateria("2");
+        m1.setNombre("asdfasdfsdf");
+        m1.setDescripcion("sadfsdfasdf");
+        
+        e1.setMateria(m1);
+        
+        
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.co.sena_EjemploJPA_jar_1.0-SNAPSHOTPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(e1);
+        
+        
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+   
+        
+    }
 }

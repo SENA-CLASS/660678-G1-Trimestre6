@@ -5,12 +5,20 @@
  */
 package edu.co.sena.ejemplo1.relaciones.unoauno;
 
+import edu.co.sena.ejemplo1.sinrelaciones.unoauno.*;
+import edu.co.sena.ejemplo1.relaciones.unoauno.*;
 import edu.co.sena.ejemplo1.anotaciones.*;
 import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,7 +27,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "ESTUDIANTE2", indexes = {@Index(name = "pruebaIndice",columnList = "NOMBREESTUDIANTE,IDESTUDIANTE")})
+@Table(name = "ESTUDIANTE2")
 public class Estudiante2 implements Serializable {
     
     @Id
@@ -37,6 +45,10 @@ public class Estudiante2 implements Serializable {
     
     @Column (name = "DIRECCION", nullable = false, length = 100)
     private String direccion;
+  
+    @JoinColumn(name = "MATERIA", referencedColumnName = "IDMATERIA" )
+    @OneToOne
+    private Materia2 materia;
 
     public String getIdEstudiante() {
         return idEstudiante;
@@ -77,8 +89,13 @@ public class Estudiante2 implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
-    
-    
-    
+
+    public Materia2 getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia2 materia) {
+        this.materia = materia;
+    }
+  
 }
