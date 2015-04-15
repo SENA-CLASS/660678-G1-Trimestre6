@@ -15,7 +15,7 @@ $RECYCLE.BIN/
 *.msp
 
 # Windows Installer files
-/target/
+/target/*
 
 # Windows shortcuts
 *.lnk

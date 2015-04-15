@@ -157,7 +157,8 @@ public class CategoriaTestJPA {
         Query q = em.createNamedQuery("Categoria.findByIdCategoria");
         q.setParameter("idCategoria", 10);
         
-        //aca asumo que solo voy a obtener un solo resultado
+        //aca asumo que solo voy a obtener un solo resultado si la consulta arroja mas de un resultado 
+        //se genera una exception
         Categoria ca = (Categoria)q.getSingleResult();
         System.out.println(ca.getIdCategoria() + " " + ca.getNombre());
         
