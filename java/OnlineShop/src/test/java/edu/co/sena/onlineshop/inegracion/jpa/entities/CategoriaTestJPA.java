@@ -158,13 +158,13 @@ public class CategoriaTestJPA {
         q.setParameter("idCategoria", 10);
         
         //aca asumo que solo voy a obtener un solo resultado si la consulta arroja mas de un resultado 
-        //se genera una exception
+        //se genera una exception.
         Categoria ca = (Categoria)q.getSingleResult();
         System.out.println(ca.getIdCategoria() + " " + ca.getNombre());
         
         //aca asumo que no cuantas categorias puedo obtener por el campo que busco este se debe usar para mi
-        // la mejor opcion por que si buscan porun nombre y hay dos categorias con e lmismo nombre busca las
-        //dos
+        // la mejor opcion por que si buscan por un nombre y hay dos categorias con el mismo nombre busca las
+        //dos y los mete en una lista con el metodo getResultList()
         List<Categoria> lis = q.getResultList();
         for (Categoria categoriaT : lis) {
             System.out.println(categoriaT.getIdCategoria() + " " + categoriaT.getNombre());
