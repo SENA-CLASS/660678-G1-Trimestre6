@@ -54,24 +54,31 @@ public class UnoAMuchosTest {
     // public void hello() {}
  @Test
     public void insertar(){
+        
+        Materia3 m1 = new Materia3();
+        m1.setIdMateria("2");
+        m1.setNombre("asdfasdfsdf");
+        m1.setDescripcion("sadfsdfasdf");
+        
+        
         Estudiante3 e1 = new Estudiante3();
         e1.setIdEstudiante("1");
         e1.setNombre("asdfasdfsdf");
         e1.setCorreo("sadfsdfasdf");
         e1.setDireccion("sadfsdfasdf");
         e1.setTelefono("sadfsdfasdf");
+        e1.setMateria(m1);
         Estudiante3 e2 = new Estudiante3();
         e2.setIdEstudiante("2");
         e2.setNombre("asdfasdfsdf");
         e2.setCorreo("sadfsdfasdf");
         e2.setDireccion("sadfsdfasdf");
         e2.setTelefono("sadfsdfasdf");
+        e2.setMateria(m1);
         
         
-        Materia3 m1 = new Materia3();
-        m1.setIdMateria("2");
-        m1.setNombre("asdfasdfsdf");
-        m1.setDescripcion("sadfsdfasdf");
+        
+        
         List<Estudiante3> listado = new ArrayList<>();
         listado.add(e1);
         listado.add(e2);
@@ -89,18 +96,17 @@ public class UnoAMuchosTest {
     
     @Test
     public void consulta(){
-    
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.co.sena_EjemploJPA_jar_1.0-SNAPSHOTPU");
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        Estudiante2 et = em.find(Materia2.class, "2").getEstudiante();
-        Materia2 mt = em.find(Estudiante2.class, "1").getMateria();
-        em.getTransaction().commit();
+       // em.getTransaction().begin();
+        Materia3 mt = em.find(Materia3.class, "2");
+        //em.getTransaction().commit();
         em.close();
         emf.close();
-        
-        System.out.println(et.toString());
         System.out.println(mt.toString());
-
+        for (Estudiante3 listado1 : mt.getEstudiantes()) {
+            System.out.println("------"+listado1.toString());
+        }
+      
     }
 }

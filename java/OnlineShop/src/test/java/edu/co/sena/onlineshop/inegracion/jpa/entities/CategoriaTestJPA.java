@@ -104,7 +104,7 @@ public class CategoriaTestJPA {
     }
 
     @Test
-    public void eliminarUnaCategoria() {
+    public void eliminarUnaCategoriaPorLlavePrimaria() {
         String idCategoria = JOptionPane.showInputDialog("inserte el id a borrar");
 
         em = EntityManagerHelper.getEntityManager();
@@ -148,5 +148,32 @@ public class CategoriaTestJPA {
         EntityManagerHelper.closeEntityManager();
         EntityManagerHelper.closeEntityManagerFactory();
     }
+    
+    @Test
+    public void buscarUsandoIdCategoriaConJPQL() {
+         em = EntityManagerHelper.getEntityManager();
+        EntityManagerHelper.beginTransaction();
+        
+        Query q = em.createNamedQuery("Categoria.findByIdCategoria");
+        q.setParameter("idCategoria", 10);
+        
+        //aca asumo que solo voy a obtener un solo resultado
+        Categoria ca = (Categoria)q.getSingleResult();
+        System.out.println(ca.getIdCategoria() + " " + ca.getNombre());
+        
+        //aca asumo que no cuantas categorias puedo obtener por el campo que busco este se debe usar para mi
+        // la mejor opcion por que si buscan porun nombre y hay dos categorias con e lmismo nombre busca las
+        //dos
+        List<Categoria> lis = q.getResultList();
+        for (Categoria categoriaT : lis) {
+            System.out.println(categoriaT.getIdCategoria() + " " + categoriaT.getNombre());
+        }
+        
+        
+        EntityManagerHelper.commit();
+        EntityManagerHelper.closeEntityManager();
+        EntityManagerHelper.closeEntityManagerFactory();
+    }
+    
 
 }

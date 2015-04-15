@@ -14,6 +14,8 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
@@ -47,8 +49,8 @@ public class Estudiante3 implements Serializable {
     @Column (name = "DIRECCION", nullable = false, length = 100)
     private String direccion;
   
-    @JoinColumn(name = "MATERIA", referencedColumnName = "IDMATERIA" )
-    @OneToOne
+    @JoinColumn(name = "MATERIA", referencedColumnName = "IDMATERIA")
+    @ManyToOne(optional = false)
     private Materia3 materia;
 
     public String getIdEstudiante() {
