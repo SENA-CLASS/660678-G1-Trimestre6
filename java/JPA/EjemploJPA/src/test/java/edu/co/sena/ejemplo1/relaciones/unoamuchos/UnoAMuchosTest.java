@@ -93,7 +93,7 @@ public class UnoAMuchosTest {
         em.close();
         emf.close();
         }
-    //prueba desde el portatilnb
+    
     @Test
     public void consulta(){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("edu.co.sena_EjemploJPA_jar_1.0-SNAPSHOTPU");
@@ -109,5 +109,5 @@ public class UnoAMuchosTest {
         }
       
     }
-    //prueba de push
+    //prueba de escritorio
 }
