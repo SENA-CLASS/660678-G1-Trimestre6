@@ -109,5 +109,5 @@ public class UnoAMuchosTest {
         }
       
     }
-    //prueba de push
+    //prueba de escritorio
 }
