@@ -175,6 +175,6 @@ public class CategoriaTestJPA {
         EntityManagerHelper.closeEntityManager();
         EntityManagerHelper.closeEntityManagerFactory();
     }
-    
+    //fin archivo
 
 }
