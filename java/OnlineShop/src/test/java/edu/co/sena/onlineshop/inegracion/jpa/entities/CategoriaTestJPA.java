@@ -44,7 +44,7 @@ public class CategoriaTestJPA {
     @Before
     public void setUp() {
         categoria = new Categoria();
-        categoria.setNombre("categoria prueba");
+        categoria.setNombre("categoria ejemplo ws");
         categoria.setPariente(0);
         categoria.setActiva(Boolean.TRUE);
 
