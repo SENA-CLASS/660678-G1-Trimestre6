@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.onlineshop.inegracion.jpa.entities;
+package edu.co.sena.onlineshop.integracion.jpa.entidades;
 
+import edu.co.sena.myonlineshop.integracion.jpa.entities.Categoria;
+import edu.co.sena.myonlineshop.integracion.jpa.entities.Producto;
+import edu.co.sena.onlineshop.inegracion.jpa.util.EntityManagerHelper;
 import java.util.Collection;
+import javax.persistence.EntityManager;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,12 +49,11 @@ public class CategoriaTest {
     public void testGetIdCategoria() {
         System.out.println("getIdCategoria");
         Categoria instance = new Categoria();
-        instance.setIdCategoria(1);
-        Integer expResult = 1;
+        Integer expResult = null;
         Integer result = instance.getIdCategoria();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -121,28 +124,55 @@ public class CategoriaTest {
     }
 
     /**
-     * Test of getPariente method, of class Categoria.
+     * Test of getCategoriaCollection method, of class Categoria.
      */
     @Test
-    public void testGetPariente() {
-        System.out.println("getPariente");
+    public void testGetCategoriaCollection() {
+        System.out.println("getCategoriaCollection");
         Categoria instance = new Categoria();
-        Integer expResult = null;
-        Integer result = instance.getPariente();
+        Collection<Categoria> expResult = null;
+        Collection<Categoria> result = instance.getCategoriaCollection();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setPariente method, of class Categoria.
+     * Test of setCategoriaCollection method, of class Categoria.
      */
     @Test
-    public void testSetPariente() {
-        System.out.println("setPariente");
-        Integer pariente = null;
+    public void testSetCategoriaCollection() {
+        System.out.println("setCategoriaCollection");
+        Collection<Categoria> categoriaCollection = null;
         Categoria instance = new Categoria();
-        instance.setPariente(pariente);
+        instance.setCategoriaCollection(categoriaCollection);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getCategoriaIdCategoria method, of class Categoria.
+     */
+    @Test
+    public void testGetCategoriaIdCategoria() {
+        System.out.println("getCategoriaIdCategoria");
+        Categoria instance = new Categoria();
+        Categoria expResult = null;
+        Categoria result = instance.getCategoriaIdCategoria();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setCategoriaIdCategoria method, of class Categoria.
+     */
+    @Test
+    public void testSetCategoriaIdCategoria() {
+        System.out.println("setCategoriaIdCategoria");
+        Categoria categoriaIdCategoria = null;
+        Categoria instance = new Categoria();
+        instance.setCategoriaIdCategoria(categoriaIdCategoria);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -210,14 +240,30 @@ public class CategoriaTest {
     public void testToString() {
         System.out.println("toString");
         Categoria instance = new Categoria();
-        instance.setIdCategoria(1);
-        instance.setActiva(Boolean.TRUE);
-        instance.setNombre("asd");
-        System.out.println(instance.toString());
-        String expResult = "Categoria{idCategoria=1, nombre=asd, activa=true, pariente=null}";
+        String expResult = "";
         String result = instance.toString();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
+    /**
+     * Test of toString method, of class Categoria.
+     */
+    @Test
+    public void insertCategoria() {
+        System.out.println("Insertar categoria");
+        Categoria instance = new Categoria();
+        instance.setNombre("adfasdf");
+        instance.setActiva(Boolean.TRUE);
+        instance.setCategoriaIdCategoria(new Categoria(1));
+        EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManagerHelper.beginTransaction();
+        em.persist(instance);
+        EntityManagerHelper.commit();
+        EntityManagerHelper.closeEntityManager();
+        
+        
         
     }
     
