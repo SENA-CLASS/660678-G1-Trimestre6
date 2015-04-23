@@ -23,21 +23,34 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
 
     @Override
     public void insert(CarritoCompras entity) {
+        EntityManager em = EntityManagerHelper.getEntityManager();
         try {
-            EntityManager em = EntityManagerHelper.getEntityManager();
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
             EntityManagerHelper.commit();
-            EntityManagerHelper.closeEntityManager();
-
-        } catch (RuntimeException re) {
+     } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
+        }finally{
+            if(em != null){
+             EntityManagerHelper.closeEntityManager();
+            }
         }
     }
 
     @Override
     public void update(CarritoCompras entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       EntityManager em = EntityManagerHelper.getEntityManager();
+        try {
+            EntityManagerHelper.beginTransaction();
+            em.merge(entity);
+            EntityManagerHelper.commit();
+     } catch (RuntimeException re) {
+            System.out.println("erorrr:----------------" + re.getMessage());
+        }finally{
+            if(em != null){
+             EntityManagerHelper.closeEntityManager();
+            }
+        }
     }
 
     @Override
