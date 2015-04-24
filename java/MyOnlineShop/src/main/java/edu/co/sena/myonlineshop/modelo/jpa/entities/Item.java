@@ -129,7 +129,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Item[ itemPK=" + itemPK + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Item[ itemPK=" + itemPK + " ]";
     }
     
 }

@@ -73,7 +73,7 @@ public class ItemPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.ItemPK[ productoIdProducto=" + productoIdProducto + ", pedidoFacturaIdFactura=" + pedidoFacturaIdFactura + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.ItemPK[ productoIdProducto=" + productoIdProducto + ", pedidoFacturaIdFactura=" + pedidoFacturaIdFactura + " ]";
     }
     
 }

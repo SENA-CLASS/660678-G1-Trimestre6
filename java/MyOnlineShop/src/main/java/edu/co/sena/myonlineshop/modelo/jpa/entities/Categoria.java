@@ -134,7 +134,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Categoria[ idCategoria=" + idCategoria + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Categoria[ idCategoria=" + idCategoria + " ]";
     }
     
 }

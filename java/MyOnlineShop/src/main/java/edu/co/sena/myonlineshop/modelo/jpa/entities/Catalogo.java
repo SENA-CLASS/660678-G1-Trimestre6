@@ -118,7 +118,7 @@ public class Catalogo implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Catalogo[ idCatalogo=" + idCatalogo + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Catalogo[ idCatalogo=" + idCatalogo + " ]";
     }
     
 }

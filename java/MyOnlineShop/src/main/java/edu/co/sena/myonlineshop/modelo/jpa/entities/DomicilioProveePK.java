@@ -73,7 +73,7 @@ public class DomicilioProveePK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.DomicilioProveePK[ proveedorTipoDocumentoTipoDocumento=" + proveedorTipoDocumentoTipoDocumento + ", proveedorNumDocumento=" + proveedorNumDocumento + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.DomicilioProveePK[ proveedorTipoDocumentoTipoDocumento=" + proveedorTipoDocumentoTipoDocumento + ", proveedorNumDocumento=" + proveedorNumDocumento + " ]";
     }
     
 }

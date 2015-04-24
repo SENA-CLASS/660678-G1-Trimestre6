@@ -137,7 +137,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Usuario[ idusuario=" + idusuario + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Usuario[ idusuario=" + idusuario + " ]";
     }
     
 }

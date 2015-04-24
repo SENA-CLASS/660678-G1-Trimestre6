@@ -155,7 +155,7 @@ public class DomicilioProvee implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.DomicilioProvee[ domicilioProveePK=" + domicilioProveePK + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.DomicilioProvee[ domicilioProveePK=" + domicilioProveePK + " ]";
     }
     
 }

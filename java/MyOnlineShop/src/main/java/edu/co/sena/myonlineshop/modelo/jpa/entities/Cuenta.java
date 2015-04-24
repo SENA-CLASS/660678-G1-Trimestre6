@@ -188,7 +188,7 @@ public class Cuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Cuenta[ cuentaPK=" + cuentaPK + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Cuenta[ cuentaPK=" + cuentaPK + " ]";
     }
     
 }

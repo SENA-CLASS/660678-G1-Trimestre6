@@ -96,7 +96,7 @@ public class Departamento implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Departamento[ idDEPARTAMENTO=" + idDEPARTAMENTO + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Departamento[ idDEPARTAMENTO=" + idDEPARTAMENTO + " ]";
     }
     
 }

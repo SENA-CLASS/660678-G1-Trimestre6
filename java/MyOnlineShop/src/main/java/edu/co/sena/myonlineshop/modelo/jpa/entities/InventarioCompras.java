@@ -157,7 +157,7 @@ public class InventarioCompras implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.InventarioCompras[ inventarioComprasPK=" + inventarioComprasPK + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.InventarioCompras[ inventarioComprasPK=" + inventarioComprasPK + " ]";
     }
     
 }

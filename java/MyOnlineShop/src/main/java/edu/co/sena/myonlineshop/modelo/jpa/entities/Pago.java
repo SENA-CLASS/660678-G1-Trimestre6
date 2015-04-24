@@ -116,7 +116,7 @@ public class Pago implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Pago[ facturaIdFactura=" + facturaIdFactura + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Pago[ facturaIdFactura=" + facturaIdFactura + " ]";
     }
     
 }

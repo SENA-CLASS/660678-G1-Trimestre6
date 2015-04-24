@@ -140,7 +140,7 @@ public class Proveedor implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Proveedor[ proveedorPK=" + proveedorPK + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Proveedor[ proveedorPK=" + proveedorPK + " ]";
     }
     
 }

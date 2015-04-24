@@ -156,7 +156,7 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Factura[ idFactura=" + idFactura + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Factura[ idFactura=" + idFactura + " ]";
     }
     
 }

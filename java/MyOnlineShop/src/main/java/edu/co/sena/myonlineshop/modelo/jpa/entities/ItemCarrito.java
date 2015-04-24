@@ -130,7 +130,7 @@ public class ItemCarrito implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.ItemCarrito[ itemCarritoPK=" + itemCarritoPK + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.ItemCarrito[ itemCarritoPK=" + itemCarritoPK + " ]";
     }
     
 }

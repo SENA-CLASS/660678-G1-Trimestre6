@@ -73,7 +73,7 @@ public class DomicilioCuentasPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.DomicilioCuentasPK[ cuentaTipoDocumentoTipoDocumento=" + cuentaTipoDocumentoTipoDocumento + ", cuentaNumeroDocumento=" + cuentaNumeroDocumento + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.DomicilioCuentasPK[ cuentaTipoDocumentoTipoDocumento=" + cuentaTipoDocumentoTipoDocumento + ", cuentaNumeroDocumento=" + cuentaNumeroDocumento + " ]";
     }
     
 }

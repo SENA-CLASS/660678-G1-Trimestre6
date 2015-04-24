@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TipoDocumento.findAll", query = "SELECT t FROM TipoDocumento t"),
     @NamedQuery(name = "TipoDocumento.findByTipoDocumento", query = "SELECT t FROM TipoDocumento t WHERE t.tipoDocumento = :tipoDocumento"),
-    @NamedQuery(name = "TipoDocumento.findByDescripcion", query = "SELECT t FROM TipoDocumento t WHERE t.descripcion = :descripcion")})
+    @NamedQuery(name = "TipoDocumento.findByDescripcion", query = "SELECT t FROM TipoDocumento t WHERE t.descripcion = :descripcion"),
+    @NamedQuery(name = "TipoDocumento.findByEstado", query = "SELECT t FROM TipoDocumento t WHERE t.estado = :estado")})
 public class TipoDocumento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,6 +41,8 @@ public class TipoDocumento implements Serializable {
     @Basic(optional = false)
     @Column(name = "DESCRIPCION")
     private String descripcion;
+    @Column(name = "ESTADO")
+    private String estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento", fetch = FetchType.EAGER)
     private Collection<Cuenta> cuentaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento", fetch = FetchType.EAGER)
@@ -71,6 +74,14 @@ public class TipoDocumento implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     @XmlTransient
@@ -113,7 +124,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.TipoDocumento[ tipoDocumento=" + tipoDocumento + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.TipoDocumento[ tipoDocumento=" + tipoDocumento + " ]";
     }
     
 }

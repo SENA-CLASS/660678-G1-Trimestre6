@@ -120,7 +120,7 @@ public class Municipio implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.Municipio[ idMUNICIPIO=" + idMUNICIPIO + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.Municipio[ idMUNICIPIO=" + idMUNICIPIO + " ]";
     }
     
 }

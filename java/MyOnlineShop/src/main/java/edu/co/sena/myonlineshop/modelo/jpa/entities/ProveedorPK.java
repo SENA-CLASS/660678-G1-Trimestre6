@@ -73,7 +73,7 @@ public class ProveedorPK implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.ProveedorPK[ tipoDocumentoTipoDocumento=" + tipoDocumentoTipoDocumento + ", numDocumento=" + numDocumento + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.ProveedorPK[ tipoDocumentoTipoDocumento=" + tipoDocumentoTipoDocumento + ", numDocumento=" + numDocumento + " ]";
     }
     
 }

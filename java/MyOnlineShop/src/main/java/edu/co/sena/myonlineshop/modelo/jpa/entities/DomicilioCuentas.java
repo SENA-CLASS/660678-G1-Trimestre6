@@ -155,7 +155,7 @@ public class DomicilioCuentas implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.myonlineshop.integracion.jpa.entities.DomicilioCuentas[ domicilioCuentasPK=" + domicilioCuentasPK + " ]";
+        return "edu.co.sena.myonlineshop.modelo.jpa.entities.DomicilioCuentas[ domicilioCuentasPK=" + domicilioCuentasPK + " ]";
     }
     
 }
