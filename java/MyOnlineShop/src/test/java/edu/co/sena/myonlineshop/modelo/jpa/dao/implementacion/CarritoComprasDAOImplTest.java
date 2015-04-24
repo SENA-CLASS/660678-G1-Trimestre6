@@ -19,6 +19,10 @@ import static org.junit.Assert.*;
  * @author hernando
  */
 public class CarritoComprasDAOImplTest {
+  
+          CarritoCompras entity = new CarritoCompras();
+  
+    
     
     public CarritoComprasDAOImplTest() {
     }
@@ -33,6 +37,10 @@ public class CarritoComprasDAOImplTest {
     
     @Before
     public void setUp() {
+        entity.setIdCarrito("asdfasdfasdf");
+        entity.setImpuestos(0);
+        entity.setSubtotal(0);
+        entity.setTotal(0);
     }
     
     @After
@@ -45,16 +53,10 @@ public class CarritoComprasDAOImplTest {
     @Test
     public void testInsert() {
         System.out.println("insert");
-        CarritoCompras entity = new CarritoCompras();
-        entity.setIdCarrito("asdfasdfasdf");
-        entity.setImpuestos(0);
-        entity.setSubtotal(0);
-        entity.setTotal(0);
+      
         
         CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
         instance.insert(entity);
-        
-        
     }
 
     /**
@@ -63,12 +65,10 @@ public class CarritoComprasDAOImplTest {
     @Test
     public void testUpdate() {
         System.out.println("update");
-        CarritoCompras entity = null;
+        entity.setImpuestos(2.6);
         CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
         instance.update(entity);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        }
 
     /**
      * Test of delete method, of class CarritoComprasDAOImpl.
@@ -89,12 +89,13 @@ public class CarritoComprasDAOImplTest {
     @Test
     public void testFindByIdCarrito() {
         System.out.println("findByIdCarrito");
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        CarritoCompras expResult = null;
-        CarritoCompras result = instance.findByIdCarrito(null);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        CarritoCompras ct;
+            String idcarrito = "asdfasdfasdf";
+         CarritoComprasDAOImpl carrito = new CarritoComprasDAOImpl();
+         ct= carrito.findByIdCarrito(idcarrito);
+         System.out.println(ct.getIdCarrito());
+       
     }
 
     /**
