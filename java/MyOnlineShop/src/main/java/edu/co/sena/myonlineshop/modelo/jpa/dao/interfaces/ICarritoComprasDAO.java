@@ -14,6 +14,10 @@ import java.util.List;
  */
 public interface ICarritoComprasDAO {
     
+    public static final String TOTAL = "total";
+    public static final String SUBTOTAL = "subtotal";
+    public static final String IMPUESTOS = "impuestos";
+    
     public void insert(CarritoCompras entity);
     public void update(CarritoCompras entity);
     public void delete(CarritoCompras entity);
