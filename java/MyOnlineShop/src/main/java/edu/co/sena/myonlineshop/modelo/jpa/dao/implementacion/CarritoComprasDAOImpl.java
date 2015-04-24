@@ -7,7 +7,7 @@ package edu.co.sena.myonlineshop.modelo.jpa.dao.implementacion;
 
 import edu.co.sena.myonlineshop.modelo.jpa.dao.interfaces.ICarritoComprasDAO;
 import edu.co.sena.myonlineshop.modelo.jpa.entities.CarritoCompras;
-import edu.co.sena.onlineshop.modelo.jpa.util.EntityManagerHelper;
+import edu.co.sena.myonlineshop.modelo.jpa.util.EntityManagerHelper;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Parameter;
@@ -64,7 +64,7 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
         EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            entity = getEntityManager().getReference(CarritoCompras.class,
+            entity = em.getReference(CarritoCompras.class,
                     entity.getIdCarrito());
             em.remove(entity);
             EntityManagerHelper.commit();

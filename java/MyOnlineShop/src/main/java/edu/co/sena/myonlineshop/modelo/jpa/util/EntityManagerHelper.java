@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.onlineshop.modelo.jpa.util;
+package edu.co.sena.myonlineshop.modelo.jpa.util;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

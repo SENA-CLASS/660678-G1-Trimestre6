@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.myonlineshop.modelo.jpa.dao.implementacion;
+package edu.co.sena.myonlineshop.modelo.jpa.dao;
 
+import edu.co.sena.myonlineshop.modelo.jpa.dao.implementacion.CarritoComprasDAOImpl;
 import edu.co.sena.myonlineshop.modelo.jpa.dao.interfaces.ICarritoComprasDAO;
 import edu.co.sena.myonlineshop.modelo.jpa.entities.CarritoCompras;
 import edu.co.sena.myonlineshop.modelo.factory.DAOAbstractFactory;
@@ -22,11 +23,12 @@ import static org.junit.Assert.*;
  *
  * @author hernando
  */
-public class CarritoComprasDAOImplTest {
-
+public class CarritoComprasDAOTest {
+    
+    
     CarritoCompras entity = new CarritoCompras();
 
-    public CarritoComprasDAOImplTest() {
+    public CarritoComprasDAOTest() {
     }
 
     @BeforeClass
@@ -56,8 +58,8 @@ public class CarritoComprasDAOImplTest {
     @Test
     public void testInsert() throws Exception{
         System.out.println("insert");
-    
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritoComprasDAO instance = fabrica.createCarritoComprasDAO();
         instance.insert(entity);
     }
 
@@ -68,7 +70,8 @@ public class CarritoComprasDAOImplTest {
     public void testUpdate() throws Exception{
         System.out.println("update");
         entity.setImpuestos(2.9);
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritoComprasDAO instance = fabrica.createCarritoComprasDAO();
         instance.update(entity);
     }
 
@@ -76,9 +79,10 @@ public class CarritoComprasDAOImplTest {
      * Test of delete method, of class CarritoComprasDAOImpl.
      */
     @Test
-    public void testDelete() {
+    public void testDelete() throws Exception {
         System.out.println("delete");
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritoComprasDAO instance = fabrica.createCarritoComprasDAO();
         CarritoCompras ct = instance.findByIdCarrito("asdfasdfasdf");
         instance.delete(ct);
         
@@ -88,12 +92,13 @@ public class CarritoComprasDAOImplTest {
      * Test of findByIdCarrito method, of class CarritoComprasDAOImpl.
      */
     @Test
-    public void testFindByIdCarrito() {
+    public void testFindByIdCarrito() throws Exception {
         System.out.println("findByIdCarrito");
         CarritoCompras ct;
         String idcarrito = "asdfasdfasdf";
-        CarritoComprasDAOImpl carrito = new CarritoComprasDAOImpl();
-        ct = carrito.findByIdCarrito(idcarrito);
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritoComprasDAO instance = fabrica.createCarritoComprasDAO();
+        ct = instance.findByIdCarrito(idcarrito);
         System.out.println(ct.getIdCarrito());
 
     }
@@ -102,9 +107,10 @@ public class CarritoComprasDAOImplTest {
      * Test of findByAll method, of class CarritoComprasDAOImpl.
      */
     @Test
-    public void testFindByAll() {
+    public void testFindByAll() throws Exception {
         System.out.println("findByAll");
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritoComprasDAO instance = fabrica.createCarritoComprasDAO();
         List<CarritoCompras> result = instance.findByAll();
         for (CarritoCompras result1 : result) {
             System.out.println(result1.getIdCarrito());
@@ -115,10 +121,11 @@ public class CarritoComprasDAOImplTest {
      * Test of findByTotal method, of class CarritoComprasDAOImpl.
      */
     @Test
-    public void testFindByTotal() {
+    public void testFindByTotal() throws Exception {
         System.out.println("findByTotal");
         double total = 0;
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritoComprasDAO instance = fabrica.createCarritoComprasDAO();
         List<CarritoCompras> result = instance.findByTotal(total);
         for (CarritoCompras result1 : result) {
             System.out.println(result1.getIdCarrito());
@@ -129,10 +136,11 @@ public class CarritoComprasDAOImplTest {
      * Test of findBySubtotal method, of class CarritoComprasDAOImpl.
      */
     @Test
-    public void testFindBySubtotal() {
+    public void testFindBySubtotal() throws Exception {
         System.out.println("findBySubtotal");
         double subtotal = 0;
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritoComprasDAO instance = fabrica.createCarritoComprasDAO();
         List<CarritoCompras> result = instance.findBySubtotal(subtotal);
          for (CarritoCompras result1 : result) {
             System.out.println(result1.getIdCarrito());
@@ -143,10 +151,11 @@ public class CarritoComprasDAOImplTest {
      * Test of findByImpuestos method, of class CarritoComprasDAOImpl.
      */
     @Test
-    public void testFindByImpuestos() {
+    public void testFindByImpuestos() throws Exception{
         System.out.println("findByImpuestos");
         double impuesto = 0;
-        CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
+        DAOFactory fabrica = MysqlJPADAOFactory.getDAOFactory(DAOAbstractFactory.MYSQL_FACTORY);
+        ICarritoComprasDAO instance = fabrica.createCarritoComprasDAO();
         List<CarritoCompras> result = instance.findByImpuestos(impuesto);
          for (CarritoCompras result1 : result) {
             System.out.println(result1.getIdCarrito());

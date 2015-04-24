@@ -7,7 +7,7 @@ package edu.co.sena.myonlineshop.integracion.jpa.entities;
 
 import edu.co.sena.myonlineshop.modelo.jpa.entities.Categoria;
 import edu.co.sena.myonlineshop.modelo.jpa.entities.Producto;
-import edu.co.sena.onlineshop.modelo.jpa.util.EntityManagerHelper;
+import edu.co.sena.myonlineshop.modelo.jpa.util.EntityManagerHelper;
 import java.util.Collection;
 import javax.persistence.EntityManager;
 import org.junit.After;
