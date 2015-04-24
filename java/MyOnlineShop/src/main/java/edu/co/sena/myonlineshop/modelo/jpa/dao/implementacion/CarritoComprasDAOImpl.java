@@ -29,7 +29,7 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
 
     @Override
     public void insert(CarritoCompras entity) {
-        EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.persist(entity);
@@ -45,7 +45,7 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
 
     @Override
     public void update(CarritoCompras entity) {
-        EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
             em.merge(entity);
@@ -61,10 +61,12 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
 
     @Override
     public void delete(CarritoCompras entity) {
-                 EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = getEntityManager();
         try {
             EntityManagerHelper.beginTransaction();
-            em.remove(em.find(CarritoCompras.class, entity));
+            entity = getEntityManager().getReference(CarritoCompras.class,
+                    entity.getIdCarrito());
+            em.remove(entity);
             EntityManagerHelper.commit();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -73,12 +75,12 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
                 EntityManagerHelper.closeEntityManager();
             }
         }
-        
+
     }
 
     @Override
     public CarritoCompras findByIdCarrito(String idCarrito) {
-        EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = getEntityManager();
         CarritoCompras carritoTemporal = null;
         try {
             carritoTemporal = em.find(CarritoCompras.class, idCarrito);
@@ -94,7 +96,7 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
 
     @Override
     public List<CarritoCompras> findByAll() {
-        EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = getEntityManager();
         List<CarritoCompras> carritosTemporal = null;
         Query query = em.createNamedQuery("CarritoCompras.findAll");
         try {
@@ -109,11 +111,12 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
 
     @Override
     public List<CarritoCompras> findByTotal(double total) {
-        EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = getEntityManager();
         List<CarritoCompras> carritosTemporal = null;
-        Query query = em.createNamedQuery("CarritoCompras.findByTotal");
-        query.setParameter(CarritoComprasDAOImpl.TOTAL, total);
+
         try {
+            Query query = em.createNamedQuery("CarritoCompras.findByTotal");
+            query.setParameter(CarritoComprasDAOImpl.TOTAL, total);
             carritosTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -125,11 +128,12 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
 
     @Override
     public List<CarritoCompras> findBySubtotal(double subtotal) {
-        EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = getEntityManager();
         List<CarritoCompras> carritosTemporal = null;
-        Query query = em.createNamedQuery("CarritoCompras.findBySubtotal");
-        query.setParameter(CarritoComprasDAOImpl.SUBTOTAL, SUBTOTAL);
+
         try {
+            Query query = em.createNamedQuery("CarritoCompras.findBySubtotal");
+            query.setParameter(CarritoComprasDAOImpl.SUBTOTAL, subtotal);
             carritosTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());
@@ -141,11 +145,12 @@ public class CarritoComprasDAOImpl implements ICarritoComprasDAO {
 
     @Override
     public List<CarritoCompras> findByImpuestos(double impuesto) {
-        EntityManager em = EntityManagerHelper.getEntityManager();
+        EntityManager em = getEntityManager();
         List<CarritoCompras> carritosTemporal = null;
-        Query query = em.createNamedQuery("CarritoCompras.findByTotal");
-        query.setParameter(CarritoComprasDAOImpl.IMPUESTOS, impuesto);
+        
         try {
+            Query query = em.createNamedQuery("CarritoCompras.findByImpuestos");
+        query.setParameter(CarritoComprasDAOImpl.IMPUESTOS, impuesto);
             carritosTemporal = query.getResultList();
         } catch (RuntimeException re) {
             System.out.println("erorrr:----------------" + re.getMessage());

@@ -19,22 +19,20 @@ import static org.junit.Assert.*;
  * @author hernando
  */
 public class CarritoComprasDAOImplTest {
-  
-          CarritoCompras entity = new CarritoCompras();
-  
-    
-    
+
+    CarritoCompras entity = new CarritoCompras();
+
     public CarritoComprasDAOImplTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         entity.setIdCarrito("asdfasdfasdf");
@@ -42,7 +40,7 @@ public class CarritoComprasDAOImplTest {
         entity.setSubtotal(0);
         entity.setTotal(0);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -53,8 +51,6 @@ public class CarritoComprasDAOImplTest {
     @Test
     public void testInsert() {
         System.out.println("insert");
-      
-        
         CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
         instance.insert(entity);
     }
@@ -68,7 +64,7 @@ public class CarritoComprasDAOImplTest {
         entity.setImpuestos(2.6);
         CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
         instance.update(entity);
-        }
+    }
 
     /**
      * Test of delete method, of class CarritoComprasDAOImpl.
@@ -76,11 +72,10 @@ public class CarritoComprasDAOImplTest {
     @Test
     public void testDelete() {
         System.out.println("delete");
-        CarritoCompras entity = null;
         CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        instance.delete(entity);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        CarritoCompras ct = instance.findByIdCarrito("asdfasdfasdf");
+        instance.delete(ct);
+        
     }
 
     /**
@@ -89,13 +84,12 @@ public class CarritoComprasDAOImplTest {
     @Test
     public void testFindByIdCarrito() {
         System.out.println("findByIdCarrito");
-        
         CarritoCompras ct;
-            String idcarrito = "asdfasdfasdf";
-         CarritoComprasDAOImpl carrito = new CarritoComprasDAOImpl();
-         ct= carrito.findByIdCarrito(idcarrito);
-         System.out.println(ct.getIdCarrito());
-       
+        String idcarrito = "asdfasdfasdf";
+        CarritoComprasDAOImpl carrito = new CarritoComprasDAOImpl();
+        ct = carrito.findByIdCarrito(idcarrito);
+        System.out.println(ct.getIdCarrito());
+
     }
 
     /**
@@ -105,11 +99,10 @@ public class CarritoComprasDAOImplTest {
     public void testFindByAll() {
         System.out.println("findByAll");
         CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        List<CarritoCompras> expResult = null;
         List<CarritoCompras> result = instance.findByAll();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        for (CarritoCompras result1 : result) {
+            System.out.println(result1.getIdCarrito());
+        }
     }
 
     /**
@@ -118,13 +111,12 @@ public class CarritoComprasDAOImplTest {
     @Test
     public void testFindByTotal() {
         System.out.println("findByTotal");
-        double total =0;
+        double total = 0;
         CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        List<CarritoCompras> expResult = null;
         List<CarritoCompras> result = instance.findByTotal(total);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        for (CarritoCompras result1 : result) {
+            System.out.println(result1.getIdCarrito());
+        }
     }
 
     /**
@@ -135,11 +127,10 @@ public class CarritoComprasDAOImplTest {
         System.out.println("findBySubtotal");
         double subtotal = 0;
         CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        List<CarritoCompras> expResult = null;
         List<CarritoCompras> result = instance.findBySubtotal(subtotal);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+         for (CarritoCompras result1 : result) {
+            System.out.println(result1.getIdCarrito());
+        }
     }
 
     /**
@@ -150,11 +141,10 @@ public class CarritoComprasDAOImplTest {
         System.out.println("findByImpuestos");
         double impuesto = 0;
         CarritoComprasDAOImpl instance = new CarritoComprasDAOImpl();
-        List<CarritoCompras> expResult = null;
         List<CarritoCompras> result = instance.findByImpuestos(impuesto);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+         for (CarritoCompras result1 : result) {
+            System.out.println(result1.getIdCarrito());
+        }
     }
-    
+
 }
