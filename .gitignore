@@ -1,3 +1,16 @@
+# archivos jar
+*.war
+*.jar
+*.ear
+
+#1. rutas de compilacion
+#1.1 maven
+/target/*
+
+#1.2 netbeans
+/build/*
+/dist/*
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
