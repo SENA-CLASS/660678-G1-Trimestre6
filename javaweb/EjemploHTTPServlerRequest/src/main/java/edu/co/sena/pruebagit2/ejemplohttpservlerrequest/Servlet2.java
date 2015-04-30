@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.pruebagit2.ejemplo3;
+package edu.co.sena.pruebagit2.ejemplohttpservlerrequest;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hernando
  */
-@WebServlet(name = "Ejemplo2", urlPatterns = {"/Ejemplo2"})
-public class Ejemplo2 extends HttpServlet {
+@WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"})
+public class Servlet2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,16 +38,36 @@ public class Ejemplo2 extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Ejemplo2</title>");            
+            out.println("<title>Servlet Servlet2</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("autenticacion: "+request.getAuthType()+"</br>");
-            int num = Integer.parseInt(request.getParameter("numero"));
-            for (int i = 1; i <= 10; i++) {
-                
-            out.println(i+" * "+num+" = "+i*num+"</br>  ");
+
+            out.println("<form action=\"Servlet3\" method=\"POST\">\n"
+                    + "            nombre:<br>\n"
+                    + "            <input type=\"text\" name=\"nombre\" value=\"hola " + request.getParameter("nombre") + "\">\n"
+                    + "            <br>\n"
+                    + "            apellido:<br>\n"
+                    + "            <input type=\"text\" name=\"apellido\" value=\"hola " + request.getParameter("apellido") + "\">\n"
+                    + "            <br><br>\n"
+                    + "            <input type=\"submit\" value=\"Enviar\">\n"
+                    + "        </form></br>");
+            ServletContext application = getServletContext();
+
+            synchronized (application) {
+                Persona personaresibida = (Persona) application.getAttribute("Objeto");
+                if (personaresibida != null) {
+                    out.println("El objeto persona ya existe y su valor es: <b>"
+                            + personaresibida.toString() + "<b>");
+                }else{
+                     out.println("El objeto persona no existe en el cont: <b>"
+                            + "<b>");
+                }
             }
+
             
+
+           
+
             out.println("</body>");
             out.println("</html>");
         }

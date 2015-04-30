@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.co.sena.pruebagit2.ejemplo3;
+package edu.co.sena.pruebagit2.ejemplohttpservlerrequest;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author hernando
  */
-@WebServlet(name = "Ejemplo2", urlPatterns = {"/Ejemplo2"})
-public class Ejemplo2 extends HttpServlet {
+@WebServlet(name = "Servlet3", urlPatterns = {"/Servlet3"})
+public class Servlet3 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,21 +35,21 @@ public class Ejemplo2 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Ejemplo2</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("autenticacion: "+request.getAuthType()+"</br>");
-            int num = Integer.parseInt(request.getParameter("numero"));
-            for (int i = 1; i <= 10; i++) {
-                
-            out.println(i+" * "+num+" = "+i*num+"</br>  ");
+            ServletContext application = getServletContext();
+            out.println("<html><head>"
+                    + "<title>Objeto ServletContext</title></head><body>");
+            synchronized (application) {
+                String nombreAplicacion = (String) application.getAttribute("nombreAplicacion");
+                if (nombreAplicacion != null) {
+                    out.println("El objeto nombreAplicacion ya existe y su valor es: <b>"
+                            + nombreAplicacion + "<b>");
+                } else {
+                    application.setAttribute("nombreAplicacion",
+                            new String("Aplicación con servlets"));
+                    out.println("Se ha creado el objeto nombreAplicacion");
+                }
             }
-            
-            out.println("</body>");
-            out.println("</html>");
+            out.println("</body></html>");
         }
     }
 
