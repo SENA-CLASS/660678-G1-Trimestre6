@@ -34,7 +34,7 @@ public class MetodosHTTPServletRequest extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -42,7 +42,10 @@ public class MetodosHTTPServletRequest extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet MetodosHTTPServletRequest</title>");            
             out.println("</head>");
-            out.println("<body>");
+            out.println("<body>"
+                    + "<i>"+response.getBufferSize()+" KB</i>");
+            
+            
             out.println("autenticacion: "+request.getAuthType()+"</br>");
             out.println("URL: "+request.getContextPath()+"</br>");
             
