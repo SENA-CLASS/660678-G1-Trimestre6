@@ -101,7 +101,7 @@ public class Departamento implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.onlineshop.model.entities.Departamento[ idDEPARTAMENTO=" + idDEPARTAMENTO + " ]";
+        return nombreDepartamento;
     }
     
 }

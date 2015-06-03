@@ -12,8 +12,6 @@
             <h:form id="MunicipioCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{municipioController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateMunicipioLabel_idMUNICIPIO}" for="idMUNICIPIO" />
-                        <p:inputText id="idMUNICIPIO" value="#{municipioController.selected.idMUNICIPIO}" title="#{bundle.CreateMunicipioTitle_idMUNICIPIO}" required="true" requiredMessage="#{bundle.CreateMunicipioRequiredMessage_idMUNICIPIO}"/>
                         <p:outputLabel value="#{bundle.CreateMunicipioLabel_nombreMunicipio}" for="nombreMunicipio" />
                         <p:inputText id="nombreMunicipio" value="#{municipioController.selected.nombreMunicipio}" title="#{bundle.CreateMunicipioTitle_nombreMunicipio}" />
                         <p:outputLabel value="#{bundle.CreateMunicipioLabel_DEPARTAMENTOidDEPARTAMENTO}" for="DEPARTAMENTOidDEPARTAMENTO" />

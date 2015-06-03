@@ -45,7 +45,7 @@
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{departamentoController.prepareCreate}" update=":DepartamentoCreateForm" oncomplete="PF('DepartamentoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DepartamentoViewForm" oncomplete="PF('DepartamentoViewDialog').show()" disabled="#{empty departamentoController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DepartamentoEditForm" oncomplete="PF('DepartamentoEditDialog').show()" disabled="#{empty departamentoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{departamentoController.destroy}" update=":growl,datalist" disabled="#{empty departamentoController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{departamentoController.destroy}" update=":growl,datalist,:BuscarDepartamentoForm" disabled="#{empty departamentoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                     
