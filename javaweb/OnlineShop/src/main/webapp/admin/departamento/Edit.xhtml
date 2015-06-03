@@ -15,7 +15,7 @@
                         <p:outputLabel value="#{bundle.EditDepartamentoLabel_nombreDepartamento}" for="nombreDepartamento" />
                         <p:inputText id="nombreDepartamento" value="#{departamentoController.selected.nombreDepartamento}" title="#{bundle.EditDepartamentoTitle_nombreDepartamento}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{departamentoController.update}" value="#{bundle.Save}" update="display,:DepartamentoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DepartamentoEditDialog');"/>
+                    <p:commandButton actionListener="#{departamentoController.update}" value="#{bundle.Save}" update="display,:DepartamentoListForm:datalist,:BuscarDepartamentoListForm:datalist2 ,:growl" oncomplete="handleSubmit(args, 'DepartamentoEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="DepartamentoEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
