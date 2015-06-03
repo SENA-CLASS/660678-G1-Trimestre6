@@ -49,12 +49,12 @@ public class Categoria implements Serializable {
     private String nombre;
     @Column(name = "ACTIVA")
     private Boolean activa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaIdCategoria", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "categoriaIdCategoria", fetch = FetchType.EAGER)
     private Collection<Categoria> categoriaCollection;
     @JoinColumn(name = "CATEGORIA_ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Categoria categoriaIdCategoria;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaIdCategoria", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "categoriaIdCategoria", fetch = FetchType.EAGER)
     private Collection<Producto> productoCollection;
 
     public Categoria() {
