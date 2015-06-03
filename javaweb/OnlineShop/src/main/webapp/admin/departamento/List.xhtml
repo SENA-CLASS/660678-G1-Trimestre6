@@ -84,7 +84,8 @@
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
 
-
+                        <p:ajax event="rowSelect"   update="viewButton2 editButton2 deleteButton2"/>
+                        <p:ajax event="rowUnselect" update="viewButton2 editButton2 deleteButton2"/>
 
                         <p:column>
                             <f:facet name="header">
@@ -98,15 +99,25 @@
                             </f:facet>
                             <h:outputText value="#{itemEncontrados.nombreDepartamento}"/>
                         </p:column>
-
+                        
+                        <f:facet name="footer">
+                            <p:commandButton id="viewButton2"   icon="ui-icon-search" value="#{bundle.View}" update="BuscarDepartamentoListForm" oncomplete="PF('DepartamentoViewDialogBuscar').show()" disabled="#{empty departamentoController.selectedBuscar}"/>
+                            <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DepartamentoEditForm" oncomplete="PF('DepartamentoEditDialog').show()" disabled="#{empty departamentoController.selected}"/>
+                            <p:commandButton id="deleteButton2" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{departamentoController.destroy}" update=":growl,datalist" disabled="#{empty departamentoController.selected}"/>
+                        </f:facet>
+                        
+                        
+                        
                     </p:dataTable>
                 </p:panel>
+                
 
             </h:form>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
+            <ui:include src="ViewBuscar.xhtml"/>
         </ui:define>
     </ui:composition>
 
