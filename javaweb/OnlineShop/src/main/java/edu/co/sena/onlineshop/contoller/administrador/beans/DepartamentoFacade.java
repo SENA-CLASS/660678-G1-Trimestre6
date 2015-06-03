@@ -36,4 +36,10 @@ public class DepartamentoFacade extends AbstractFacade<Departamento> {
         return queryJPQL.getResultList();
     }
     
+    public List<Departamento> findByParteNombre(String nombreDepBuscar) {
+        String sqlQuery = "SELECT * FROM departamento dep where dep.NOMBRE_DEPARTAMENTO like '%"+nombreDepBuscar+"%';";
+        Query query2 = getEntityManager().createNativeQuery(sqlQuery, Departamento.class);
+        return query2.getResultList();
+    }
+    
 }

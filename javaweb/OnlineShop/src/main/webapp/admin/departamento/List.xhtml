@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <!--CRUD de departamentos-->
-            <p:messages autoUpdate="true" closable="true" />
+            
             <h:form id="DepartamentoListForm">
                 <p:panel header="#{bundle.ListDepartamentoTitle}">
                     <p:dataTable id="datalist" value="#{departamentoController.items}" var="item"
@@ -60,11 +60,20 @@
                     <h:panelGrid id="grid1" columns="5"  cellspacing="0">
                         <p:outputLabel for="buscarIdDepartamento" value="#{bundle.BuscarDepartamentoLabel_idDepartamento}" />
                         <p:inputText id="buscarIdDepartamento" required="true" value="#{departamentoController.idBuscar}" />
-                        <p:commandButton id="botonIdDep" icon="ui-icon-search" value="#{bundle.Buscar}" update=":BuscarDepartamentoListForm " actionListener="#{departamentoController.buscarPorId}" />
+                        <p:commandButton id="botonIdDep" icon="ui-icon-search" value="#{bundle.Buscar}" update=":BuscarDepartamentoListForm,:panelBusqueda " actionListener="#{departamentoController.buscarPorId}" />
                         <p:message for="buscarIdDepartamento" />
                     </h:panelGrid>
                 </h:form>
                 
+                <h:form id="BuscarDepartamentoForm2">
+                     <p:messages autoUpdate="true" closable="true" for="buscarIdDepartamento"/>
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel for="buscarNomDep" value="#{bundle.BuscarDepartamentoLabel_NombreDepartamento}" />
+                        <p:inputText id="buscarNomDep" required="true" value="#{departamentoController.nombreBuscar}" />
+                        <p:commandButton id="botonNomDep" icon="ui-icon-search" value="#{bundle.Buscar}" update=":BuscarDepartamentoListForm, :panelBusqueda " actionListener="#{departamentoController.buscarPorNombre}" />
+                        <p:message for="buscarNomDep" />
+                    </h:panelGrid>
+                </h:form>
 
 
             </p:panel>

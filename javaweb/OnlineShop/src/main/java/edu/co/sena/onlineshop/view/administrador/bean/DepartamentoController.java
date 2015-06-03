@@ -18,9 +18,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
 
 @Named("departamentoController")
-@SessionScoped
+@ViewScoped
 public class DepartamentoController implements Serializable {
 
     @EJB
@@ -30,7 +31,8 @@ public class DepartamentoController implements Serializable {
     private Departamento selected;
     private Departamento selectedBuscar;
     
-    private Integer idBuscar =null;
+    private Integer idBuscar;
+    private String nombreBuscar;
 
     public DepartamentoController() {
     }
@@ -68,6 +70,14 @@ public class DepartamentoController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DepartamentoUpdated"));
+        selectedBuscar=null;
+        itemsBuscados=null;
+    }
+    public void updateBuscar() {
+        persist(PersistAction.UPDATEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("DepartamentoUpdated"));
+        items=null;
+        selected=null;
+        
     }
 
     public void destroy() {
@@ -76,6 +86,15 @@ public class DepartamentoController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+    }
+    public void eliminarBuscado() {
+        persist(PersistAction.DELETEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("DepartamentoDeleted"));
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+        itemsBuscados=null;
+        selectedBuscar=null;
     }
 
     public List<Departamento> getItems() {
@@ -88,8 +107,17 @@ public class DepartamentoController implements Serializable {
         
         
         itemsBuscados = getFacade().findById(idBuscar);
+        nombreBuscar=null;
+        items=null;
+        return itemsBuscados;
+    }
+    public List<Departamento> buscarPorNombre() {
+        
+        
+        itemsBuscados = getFacade().findByParteNombre(nombreBuscar);
         
         items=null;
+        idBuscar=null;
         return itemsBuscados;
     }
 
@@ -101,6 +129,31 @@ public class DepartamentoController implements Serializable {
                     getFacade().edit(selected);
                 } else {
                     getFacade().remove(selected);
+                }
+                JsfUtil.addSuccessMessage(successMessage);
+            } catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            }
+        }
+        if (selectedBuscar != null) {
+            setEmbeddableKeys();
+            try {
+                if (persistAction != PersistAction.DELETEBUSCAR) {
+                    getFacade().edit(selectedBuscar);
+                } else {
+                    getFacade().remove(selectedBuscar);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -157,6 +210,14 @@ public class DepartamentoController implements Serializable {
 
     public List<Departamento> getItemsBuscados() {
         return itemsBuscados;
+    }
+
+    public String getNombreBuscar() {
+        return nombreBuscar;
+    }
+
+    public void setNombreBuscar(String nombreBuscar) {
+        this.nombreBuscar = nombreBuscar;
     }
 
     @FacesConverter(forClass = Departamento.class)
