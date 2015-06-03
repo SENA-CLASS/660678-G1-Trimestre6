@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <table border="1">
+
+            <tr>
+                <td>Operacion Aritmetica</td>
+                <td>Resultado</td>
+            </tr>
+            <tr>
+                <td>#{'#{'}2 + 2 }</td>
+                <td>#{2 + 2 }</td>
+            </tr>
+            <tr>
+                <td>${'${'}2 * 2 }</td>
+                <td>${2 * 2 }</td>
+            </tr>
+            <tr>
+                <td>${'${'}2 - 2 }</td>
+                <td>${2 - 2 }</td>
+            </tr>
+            <tr>
+                <td>${'${'}5 / 2 }</td>
+                <td>${5 / 2 }</td>
+            </tr>
+            <tr>
+                <td>${'${'}5 div 2 }</td>
+                <td>${5 div 2 }</td>
+            </tr>
+            <tr>
+                <td>${'${'}5 div 2 }</td>
+                <td>${5 div 2 }</td>
+            </tr>
+            <tr>
+                <td>${'${'}5 % 2 }</td>
+                <td>${5 % 2 }</td>
+            </tr>
+            <tr>
+                <td>${'${'}5 % 2 }</td>
+                <td>${5 % 2 }</td>
+            </tr>
+            <tr>
+                <td>${pagina4Bean.verdadero} y ${pagina4Bean.falso}</td>
+                <td>${pagina4Bean.verdadero and pagina4Bean.falso}</td>
+            </tr>
+            <tr>
+                <td>! ${pagina4Bean.verdadero}</td>
+                <td>${not pagina4Bean.verdadero}</td>
+            </tr>
+            <tr>
+                <td>${pagina4Bean.a} menor ${pagina4Bean.b}</td>
+                <td>${pagina4Bean.a lt pagina4Bean.b}</td>
+            </tr>
+            <tr>
+                <td>${pagina4Bean.a} mayor ${pagina4Bean.b}</td>
+                <td>${pagina4Bean.a gt pagina4Bean.b}</td>
+            </tr>
+            <tr>
+                <td>${pagina4Bean.a}menor o igual ${pagina4Bean.b}</td>
+                <td>${pagina4Bean.a le pagina4Bean.b}</td>
+            </tr>
+            <tr>
+                <td>${pagina4Bean.a}mayo o igual ${pagina4Bean.b}</td>
+                <td>${pagina4Bean.a ge pagina4Bean.b}</td>
+            </tr>
+            <tr>
+                <td>${pagina4Bean.a} igual ${pagina4Bean.b}</td>
+                <td>${pagina4Bean.a eq pagina4Bean.b}</td>
+            </tr>
+            <tr>
+                <td>${pagina4Bean.a} diferente ${pagina4Bean.b}</td>
+                <td>${pagina4Bean.a ne pagina4Bean.b}</td>
+            </tr>
+            <tr>
+                <td>x igual 3</td>
+                <td>${x = 3}</td>
+            </tr>
+            <tr>
+                <td>y igual 3</td>
+                <td>${y = 5}</td>
+            </tr>
+            <tr>
+                <td>z=x+y</td>
+                <td>${z=x+y}</td>
+            </tr>
+            <tr>
+                <td>z concatenado con 5</td>
+                <td>${z+=5}</td>
+            </tr>
+            <tr>
+                <td>z=z+5</td>
+                <td>${z=z+5}</td>
+            </tr>
+            <tr>
+                <td>4 igual 5</td>
+                <td>${4 == 5?"verdadero":"falso"}</td>
+            </tr>
+            <tr>
+                <td>el atributo activos esta activo</td>
+                <td>${pagina4Bean.activo?"esta activo":"no esta activo"}</td>
+            </tr>
+            <tr>
+                <td>${'${'}true && false}</td>
+                <td>${true && false}</td>
+            </tr>
+
+
+        </table>
+        #{'#{'}"Rafael " += "Nadal " += "Parera"} evaluates to: #{"Rafael " += "Nadal " += "Parera"}<br/>
+        #{pagina4Bean.suma()}
+        #{pagina4Bean.suma(5,6)}
+    </h:body>
+</html>
+
