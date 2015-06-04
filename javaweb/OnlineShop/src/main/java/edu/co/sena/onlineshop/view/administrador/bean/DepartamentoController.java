@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -30,7 +31,7 @@ public class DepartamentoController implements Serializable {
     private List<Departamento> itemsBuscados = null;
     private Departamento selected;
     private Departamento selectedBuscar;
-    
+
     private Integer idBuscar;
     private String nombreBuscar;
 
@@ -70,14 +71,15 @@ public class DepartamentoController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DepartamentoUpdated"));
-        selectedBuscar=null;
-        itemsBuscados=null;
+        selectedBuscar = null;
+        itemsBuscados = null;
     }
+
     public void updateBuscar() {
         persist(PersistAction.UPDATEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("DepartamentoUpdated"));
-        items=null;
-        selected=null;
-        
+        items = null;
+        selected = null;
+
     }
 
     public void destroy() {
@@ -87,14 +89,15 @@ public class DepartamentoController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
+
     public void eliminarBuscado() {
         persist(PersistAction.DELETEBUSCAR, ResourceBundle.getBundle("/Bundle").getString("DepartamentoDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
-        itemsBuscados=null;
-        selectedBuscar=null;
+        itemsBuscados = null;
+        selectedBuscar = null;
     }
 
     public List<Departamento> getItems() {
@@ -103,21 +106,18 @@ public class DepartamentoController implements Serializable {
         }
         return items;
     }
+
     public List<Departamento> buscarPorId() {
-        
-        
         itemsBuscados = getFacade().findById(idBuscar);
-        nombreBuscar=null;
-        items=null;
+        nombreBuscar = null;
+        items = null;
         return itemsBuscados;
     }
+
     public List<Departamento> buscarPorNombre() {
-        
-        
         itemsBuscados = getFacade().findByParteNombre(nombreBuscar);
-        
-        items=null;
-        idBuscar=null;
+        items = null;
+        idBuscar = null;
         return itemsBuscados;
     }
 
@@ -193,8 +193,6 @@ public class DepartamentoController implements Serializable {
     public void setIdBuscar(Integer idBuscar) {
         this.idBuscar = idBuscar;
     }
-
-    
 
     public void setItemsBuscados(List<Departamento> itemsBuscados) {
         this.itemsBuscados = itemsBuscados;

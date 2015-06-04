@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <!--CRUD de departamentos-->
-            
+
             <h:form id="DepartamentoListForm">
                 <p:panel header="#{bundle.ListDepartamentoTitle}">
                     <p:dataTable id="datalist" value="#{departamentoController.items}" var="item"
@@ -24,18 +24,19 @@
                                  rowKey="#{item.idDEPARTAMENTO}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="#{bundle.BuscarListEmptyMSS}"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column sortBy="#{item.idDEPARTAMENTO}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDepartamentoTitle_idDEPARTAMENTO}"/>
                             </f:facet>
                             <h:outputText value="#{item.idDEPARTAMENTO}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.nombreDepartamento}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDepartamentoTitle_nombreDepartamento}"/>
                             </f:facet>
@@ -48,29 +49,33 @@
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{departamentoController.destroy}" update=":growl,datalist,:BuscarDepartamentoForm" disabled="#{empty departamentoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
-                    
+
                 </p:panel>
+                <p:contextMenu for="datalist" >
+                   <p:menuitem id="viewButton2"   icon="ui-icon-search" value="#{bundle.View}" update=":DepartamentoViewForm" oncomplete="PF('DepartamentoViewDialog').show()" />
+                            <p:menuitem id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DepartamentoEditForm" oncomplete="PF('DepartamentoEditDialog').show()" />
+                            <p:menuitem id="deleteButton2" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{departamentoController.destroy}" update=":growl,datalist,:BuscarDepartamentoForm"/>
+                </p:contextMenu>
             </h:form>
-             
+
             <!--buscador de departamentos-->
             <p:panel header="#{bundle.BuscarDepartamentoTitle_idDepartamento}" id="panelBusqueda">
-               
+
                 <h:form id="BuscarDepartamentoForm">
-                     <p:messages autoUpdate="true" closable="true" for="buscarIdDepartamento"/>
                     <h:panelGrid id="grid1" columns="5"  cellspacing="0">
                         <p:outputLabel for="buscarIdDepartamento" value="#{bundle.BuscarDepartamentoLabel_idDepartamento}" />
                         <p:inputText id="buscarIdDepartamento" required="true" value="#{departamentoController.idBuscar}" />
-                        <p:commandButton id="botonIdDep" icon="ui-icon-search" value="#{bundle.Buscar}" update=":BuscarDepartamentoListForm,:panelBusqueda " actionListener="#{departamentoController.buscarPorId}" />
+                        <p:commandButton id="botonIdDep" icon="ui-icon-search" value="#{bundle.Buscar}" update=":BuscarDepartamentoListForm:panelBuscar,:BuscarDepartamentoListForm,:panelBusqueda " actionListener="#{departamentoController.buscarPorId}" />
                         <p:message for="buscarIdDepartamento" />
                     </h:panelGrid>
                 </h:form>
-                
+
                 <h:form id="BuscarDepartamentoForm2">
-                     <p:messages autoUpdate="true" closable="true" for="buscarIdDepartamento"/>
+                    <p:messages autoUpdate="true" closable="true" for="buscarIdDepartamento"/>
                     <h:panelGrid id="grid1" columns="5"  cellspacing="0">
                         <p:outputLabel for="buscarNomDep" value="#{bundle.BuscarDepartamentoLabel_NombreDepartamento}" />
                         <p:inputText id="buscarNomDep" required="true" value="#{departamentoController.nombreBuscar}" />
-                        <p:commandButton id="botonNomDep" icon="ui-icon-search" value="#{bundle.Buscar}" update=":BuscarDepartamentoListForm, :panelBusqueda " actionListener="#{departamentoController.buscarPorNombre}" />
+                        <p:commandButton id="botonNomDep" icon="ui-icon-search" value="#{bundle.Buscar}" update=":BuscarDepartamentoListForm:panelBuscar,:BuscarDepartamentoListForm, :panelBusqueda " actionListener="#{departamentoController.buscarPorNombre}" />
                         <p:message for="buscarNomDep" />
                     </h:panelGrid>
                 </h:form>
@@ -78,9 +83,9 @@
 
             </p:panel>
             <!--resultados de busqueda de departamentos-->
-            <h:form id="BuscarDepartamentoListForm">
-                
-                <p:panel header="#{bundle.BuscarListDepartamentoTitle}" id="panelBuscar" >
+            <h:form id="BuscarDepartamentoListForm"  >
+
+                <p:panel header="#{bundle.BuscarListDepartamentoTitle}" id="panelBuscar" rendered="#{departamentoController.itemsBuscados != null}" >
 
 
                     <p:dataTable id="datalist2" value="#{departamentoController.itemsBuscados}" var="itemEncontrados"
@@ -89,6 +94,8 @@
                                  rowKey="#{itemEncontrados.idDEPARTAMENTO}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="#{bundle.BuscarListEmptyMSS}"
+
                                  >
 
                         <p:ajax event="rowSelect"   update="viewButton2 editButton2 deleteButton2"/>
@@ -106,20 +113,23 @@
                             </f:facet>
                             <h:outputText value="#{itemEncontrados.nombreDepartamento}"/>
                         </p:column>
-                        
+
                         <f:facet name="footer">
                             <p:commandButton id="viewButton2"   icon="ui-icon-search" value="#{bundle.View}" update=":DepartamentoViewFormBuscar" oncomplete="PF('DepartamentoViewDialogBuscar').show()" disabled="#{empty departamentoController.selectedBuscar}"/>
                             <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DepartamentoEditFormBuscar" oncomplete="PF('DepartamentoEditDialogBuscar').show()" disabled="#{empty departamentoController.selectedBuscar}"/>
                             <p:commandButton id="deleteButton2" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{departamentoController.eliminarBuscado}" update=":growl,:BuscarDepartamentoListForm:datalist2, :DepartamentoListForm:datalist" disabled="#{empty departamentoController.selectedBuscar}"/>
                         </f:facet>
-                        
-                        
-                        
+
+
+
                     </p:dataTable>
                 </p:panel>
-                
-
-            </h:form>
+                <p:contextMenu for="datalist2">
+                    <p:menuitem id="viewButton3"   icon="ui-icon-search" value="#{bundle.View}" update=":DepartamentoViewFormBuscar" oncomplete="PF('DepartamentoViewDialogBuscar').show()" />
+                    <p:menuitem id="editButton3"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DepartamentoEditFormBuscar" oncomplete="PF('DepartamentoEditDialogBuscar').show()" />
+                    <p:menuitem id="deleteButton3" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{departamentoController.eliminarBuscado}" update=":growl,:BuscarDepartamentoListForm:datalist2, :DepartamentoListForm:datalist"/>
+                </p:contextMenu>
+                            </h:form>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
