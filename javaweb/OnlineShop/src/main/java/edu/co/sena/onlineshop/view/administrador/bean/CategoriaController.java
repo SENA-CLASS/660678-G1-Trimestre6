@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -22,11 +21,11 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.view.ViewScoped;
 
 @Named("categoriaController")
-@SessionScoped
+@ViewScoped
 public class CategoriaController implements Serializable {
 
     @EJB
-    private edu.co.sena.onlineshop.contoller.administrador.beans.CategoriaFacade ejbFacade;
+    private edu.co.sena.onlineshop.contoller.administrador.beans.CategoriaFacade ejbFacade;    
     private List<Categoria> items = null;
     private List<Categoria> itemsEncontrados = null;
     private Categoria selected;
@@ -61,7 +60,7 @@ public class CategoriaController implements Serializable {
     private CategoriaFacade getFacade() {
         return ejbFacade;
     }
-
+    
     public Categoria prepareCreate() {
         selected = new Categoria();
         initializeEmbeddableKey();
@@ -102,6 +101,7 @@ public class CategoriaController implements Serializable {
         itemsEncontrados = getFacade().findByNombre(nombreCategoriaBuscado);
         return itemsEncontrados;
     }
+    
     public List<Categoria> buscarEstado() {
         itemsEncontrados = getFacade().findEstado(estadoBuscado);
         return itemsEncontrados;
@@ -214,8 +214,6 @@ public class CategoriaController implements Serializable {
     public void setEstadoBuscado2(String estadoBuscado2) {
         this.estadoBuscado2 = estadoBuscado2;
     }
-
-   
 
     @FacesConverter(forClass = Categoria.class)
     public static class CategoriaControllerConverter implements Converter {
