@@ -27,29 +27,29 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
+                        <p:column sortBy="#{item.idCategoria}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_idCategoria}"/>
                             </f:facet>
                             <h:outputText value="#{item.idCategoria}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.activa}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_activa}"/>
                             </f:facet>
                             <p:selectBooleanCheckbox value="#{item.activa}" disabled="true"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.categoriaIdCategoria.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategoriaTitle_categoriaIdCategoria}"/>
                             </f:facet>
-                            <h:outputText value="#{item.categoriaIdCategoria}"/>
+                            <h:outputText value="#{item.categoriaIdCategoria.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{categoriaController.prepareCreate}" update=":CategoriaCreateForm" oncomplete="PF('CategoriaCreateDialog').show()"/>
@@ -60,6 +60,119 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
+
+
+            <p:panel header="#{bundle.BuscarDepartamentoTitle_idDepartamento}" id="panelBusqueda">
+
+                <h:form id="bucarIdCategoriaForm">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel for="bucarIdCategoria" value="#{bundle.BuscarDepartamentoLabel_idDepartamento}" />
+                        <p:inputText id="bucarIdCategoria" required="true" 
+                                     value="#{categoriaController.idCategoriaBuscado}" />
+                        <p:commandButton id="botonBuscarIdCategoria" icon="ui-icon-search" 
+                                         value="#{bundle.Buscar}" 
+                                         update=":CategoriaListFormBuscar" 
+                                         actionListener="#{categoriaController.buscarPorId}" />
+                        <p:message for="bucarIdCategoria" />
+                    </h:panelGrid>
+                </h:form>
+                
+                <h:form id="bucarNombreCategoriaForm">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel for="bucarNomberCategoria" value="#{bundle.BuscarDepartamentoLabel_idDepartamento}" />
+                        <p:inputText id="bucarNomberCategoria" required="true" 
+                                     value="#{categoriaController.nombreCategoriaBuscado}" />
+                        <p:commandButton id="botonBuscarNombreCategoria" icon="ui-icon-search" 
+                                         value="#{bundle.Buscar}" 
+                                         update=":CategoriaListFormBuscar" 
+                                         actionListener="#{categoriaController.buscarPorNombre}" />
+                        <p:message for="bucarNomberCategoria" />
+                    </h:panelGrid>
+                </h:form>
+                
+                <h:form id="bucarActivaCategoriaForm">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel for="botonBuscarActivaCategoria" value="#{bundle.BuscarDepartamentoLabel_idDepartamento}" />
+                        <p:selectBooleanCheckbox id="activa" value="#{categoriaController.estadoBuscado}" />
+                        <p:commandButton id="botonBuscarActivaCategoria" icon="ui-icon-search" 
+                                         value="#{bundle.Buscar}" 
+                                         update=":CategoriaListFormBuscar" 
+                                         actionListener="#{categoriaController.buscarEstado}" />
+                        <p:message for="botonBuscarActivaCategoria" />
+                    </h:panelGrid>
+                </h:form>
+                <h:form id="bucarEstadoCategoriaForm">
+                    <h:panelGrid id="grid1" columns="5"  cellspacing="0">
+                        <p:outputLabel for="botonBuscarEstadoCategoria" value="#{bundle.BuscarDepartamentoLabel_idDepartamento}" />
+                        <p:selectOneMenu id="botonBuscarEstadoCategoria" value="#{categoriaController.estadoBuscado2}" required="true" requiredMessage="#{bundle.EditMunicipioRequiredMessage_DEPARTAMENTOidDEPARTAMENTO}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{categoriaController.estados}"
+                                           var="itemEstados"
+                                           itemValue="#{itemEstados}"/>
+                        </p:selectOneMenu>
+                        <p:commandButton id="botonBuscarActivaCategoria" icon="ui-icon-search" 
+                                         value="#{bundle.Buscar}" 
+                                         update=":CategoriaListFormBuscar" 
+                                         actionListener="#{categoriaController.buscarEstado2}" />
+                        <p:message for="botonBuscarEstadoCategoria" />
+                    </h:panelGrid>
+                </h:form>
+
+              
+
+
+            </p:panel>
+            
+
+            <h:form id="CategoriaListFormBuscar">
+                <p:panel header="#{bundle.ListCategoriaTitle}">
+                    <p:dataTable id="datalist" value="#{categoriaController.itemsEncontrados}" var="itemEnc"
+                                 selectionMode="single" selection="#{categoriaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{itemEnc.idCategoria}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column sortBy="#{itemEnc.idCategoria}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriaTitle_idCategoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemEnc.idCategoria}"/>
+                        </p:column>
+                        <p:column sortBy="#{itemEnc.nombre}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriaTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemEnc.nombre}"/>
+                        </p:column>
+                        <p:column sortBy="#{itemEnc.activa}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriaTitle_activa}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{itemEnc.activa}" disabled="true"/>
+                        </p:column>
+                        <p:column sortBy="#{itemEnc.categoriaIdCategoria.nombre}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategoriaTitle_categoriaIdCategoria}"/>
+                            </f:facet>
+                            <h:outputText value="#{itemEnc.categoriaIdCategoria.nombre}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{categoriaController.prepareCreate}" update=":CategoriaCreateForm" oncomplete="PF('CategoriaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CategoriaViewForm" oncomplete="PF('CategoriaViewDialog').show()" disabled="#{empty categoriaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CategoriaEditForm" oncomplete="PF('CategoriaEditDialog').show()" disabled="#{empty categoriaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{categoriaController.destroy}" update=":growl,datalist" disabled="#{empty categoriaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+
+
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>

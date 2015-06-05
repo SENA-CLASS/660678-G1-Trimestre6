@@ -49,12 +49,12 @@ public class Categoria implements Serializable {
     private String nombre;
     @Column(name = "ACTIVA")
     private Boolean activa;
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "categoriaIdCategoria", fetch = FetchType.EAGER)
+    @OneToMany( mappedBy = "categoriaIdCategoria", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Collection<Categoria> categoriaCollection;
     @JoinColumn(name = "CATEGORIA_ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
     @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Categoria categoriaIdCategoria;
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "categoriaIdCategoria", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "categoriaIdCategoria", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Collection<Producto> productoCollection;
 
     public Categoria() {
@@ -136,7 +136,7 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.onlineshop.model.entities.Categoria[ idCategoria=" + idCategoria + " ]";
+        return nombre;
     }
     
 }

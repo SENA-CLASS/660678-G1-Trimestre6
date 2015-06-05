@@ -12,8 +12,6 @@
             <h:form id="CategoriaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{categoriaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateCategoriaLabel_idCategoria}" for="idCategoria" />
-                        <p:inputText id="idCategoria" value="#{categoriaController.selected.idCategoria}" title="#{bundle.CreateCategoriaTitle_idCategoria}" required="true" requiredMessage="#{bundle.CreateCategoriaRequiredMessage_idCategoria}"/>
                         <p:outputLabel value="#{bundle.CreateCategoriaLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{categoriaController.selected.nombre}" title="#{bundle.CreateCategoriaTitle_nombre}" />
                         <p:outputLabel value="#{bundle.CreateCategoriaLabel_activa}" for="activa" />

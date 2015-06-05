@@ -19,11 +19,11 @@
             <p:layoutUnit position="north" size="65"  header="#{bundle.AppName}">
                  <h:form id="menuForm">
                     <p:menubar>
-                        <p:menuitem value="#{bundle.Home}" outcome="/admin/index" icon="ui-icon-home"/>
+                        <p:menuitem value="#{bundle.Home}" outcome="/admin/indexAdmin" icon="ui-icon-home"/>
                         <p:submenu label="#{bundle.Maintenance}">
                             <p:menuitem value="CarritoCompras" outcome="/admin/carritoCompras/List.xhtml" />
                             <p:menuitem value="Catalogo" outcome="/admin/catalogo/List.xhtml" />
-                            <p:menuitem value="Categoria" outcome="/admin/categoria/List.xhtml" />
+                            
                             <p:menuitem value="Cuenta" outcome="/admin/cuenta/List.xhtml" />
                             
                             <p:menuitem value="DomicilioCuentas" outcome="/admin/domicilioCuentas/List.xhtml" />
@@ -42,6 +42,7 @@
                         </p:submenu>
                         <p:submenu label="#{bundle.MenuAdministrador}">
                             <p:menuitem value="Departamento" outcome="/admin/departamento/List.xhtml" />
+                            <p:menuitem value="Categoria" outcome="/admin/categoria/List.xhtml" />
                         </p:submenu>
                     </p:menubar>
                 </h:form>

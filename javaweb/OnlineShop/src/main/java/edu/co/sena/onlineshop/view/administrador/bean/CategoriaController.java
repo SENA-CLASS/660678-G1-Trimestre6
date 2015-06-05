@@ -6,18 +6,20 @@ import edu.co.sena.onlineshop.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.onlineshop.contoller.administrador.beans.CategoriaFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
 
 @Named("categoriaController")
 @SessionScoped
@@ -26,9 +28,20 @@ public class CategoriaController implements Serializable {
     @EJB
     private edu.co.sena.onlineshop.contoller.administrador.beans.CategoriaFacade ejbFacade;
     private List<Categoria> items = null;
+    private List<Categoria> itemsEncontrados = null;
     private Categoria selected;
+    private Categoria selectedBuscados;
+
+    private Integer idCategoriaBuscado;
+    private String nombreCategoriaBuscado;
+    private Boolean estadoBuscado;
+    private String estadoBuscado2;
+    
+    private List<String> estados = new ArrayList<>();
 
     public CategoriaController() {
+        estados.add(ResourceBundle.getBundle("/Bundle").getString("Activo"));
+        estados.add(ResourceBundle.getBundle("/Bundle").getString("Inactivo"));
     }
 
     public Categoria getSelected() {
@@ -81,12 +94,37 @@ public class CategoriaController implements Serializable {
         return items;
     }
 
+    public List<Categoria> buscarPorId() {
+        itemsEncontrados = getFacade().findById(idCategoriaBuscado);
+        return itemsEncontrados;
+    }
+    public List<Categoria> buscarPorNombre() {
+        itemsEncontrados = getFacade().findByNombre(nombreCategoriaBuscado);
+        return itemsEncontrados;
+    }
+    public List<Categoria> buscarEstado() {
+        itemsEncontrados = getFacade().findEstado(estadoBuscado);
+        return itemsEncontrados;
+    }
+    public List<Categoria> buscarEstado2() {
+        if(estadoBuscado2.equals(ResourceBundle.getBundle("/Bundle").getString("Activo"))) {
+                estadoBuscado=true;
+        }else{
+                estadoBuscado=false;
+        }
+        itemsEncontrados = getFacade().findEstado(estadoBuscado);
+        return itemsEncontrados;
+    }
+    
+    
+
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
+                    selected = null;
                 } else {
                     getFacade().remove(selected);
                 }
@@ -120,6 +158,64 @@ public class CategoriaController implements Serializable {
     public List<Categoria> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+
+    public List<Categoria> getItemsEncontrados() {
+        return itemsEncontrados;
+    }
+
+    public void setItemsEncontrados(List<Categoria> itemsEncontrados) {
+        this.itemsEncontrados = itemsEncontrados;
+    }
+
+    public Categoria getSelectedBuscados() {
+        return selectedBuscados;
+    }
+
+    public void setSelectedBuscados(Categoria selectedBuscados) {
+        this.selectedBuscados = selectedBuscados;
+    }
+
+    public Integer getIdCategoriaBuscado() {
+        return idCategoriaBuscado;
+    }
+
+    public void setIdCategoriaBuscado(Integer idCAtegoriaBuscado) {
+        this.idCategoriaBuscado = idCAtegoriaBuscado;
+    }
+
+    public String getNombreCategoriaBuscado() {
+        return nombreCategoriaBuscado;
+    }
+
+    public void setNombreCategoriaBuscado(String nombreCategoriaBuscado) {
+        this.nombreCategoriaBuscado = nombreCategoriaBuscado;
+    }
+
+    public Boolean getEstadoBuscado() {
+        return estadoBuscado;
+    }
+
+    public void setEstadoBuscado(Boolean estadoBuscado) {
+        this.estadoBuscado = estadoBuscado;
+    }
+
+    public List<String> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(List<String> estados) {
+        this.estados = estados;
+    }
+
+    public String getEstadoBuscado2() {
+        return estadoBuscado2;
+    }
+
+    public void setEstadoBuscado2(String estadoBuscado2) {
+        this.estadoBuscado2 = estadoBuscado2;
+    }
+
+   
 
     @FacesConverter(forClass = Categoria.class)
     public static class CategoriaControllerConverter implements Converter {
