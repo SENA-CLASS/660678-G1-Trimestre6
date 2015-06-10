@@ -27,7 +27,7 @@ public class TipoDocumentoController implements Serializable {
     private edu.co.sena.onlineshop.contoller.administrador.beans.TipoDocumentoFacade ejbFacade;
     private List<TipoDocumento> items = null;
     private TipoDocumento selected;
-
+        
     public TipoDocumentoController() {
     }
 

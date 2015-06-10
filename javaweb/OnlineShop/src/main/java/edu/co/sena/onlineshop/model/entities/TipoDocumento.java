@@ -119,7 +119,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.onlineshop.model.entities.TipoDocumento[ tipoDocumento=" + tipoDocumento + " ]";
+        return tipoDocumento;
     }
     
 }

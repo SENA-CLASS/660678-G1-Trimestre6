@@ -12,6 +12,10 @@
             <h:form id="CuentaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cuentaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCuentaLabel_usuarioIdusuario}"/>
+                        <h:outputText value="#{cuentaController.selected.usuarioIdusuario}" title="#{bundle.ViewCuentaTitle_usuarioIdusuario}"/>
+                        <h:outputText value="#{bundle.ViewCuentaLabel_tipoDocumento}"/>
+                        <h:outputText value="#{cuentaController.selected.cuentaPK.tipoDocumentoTipoDocumento}" title="#{bundle.ViewCuentaTitle_tipoDocumento}"/>
                         <h:outputText value="#{bundle.ViewCuentaLabel_cuentaPK_numeroDocumento}"/>
                         <h:outputText value="#{cuentaController.selected.cuentaPK.numeroDocumento}" title="#{bundle.ViewCuentaTitle_cuentaPK_numeroDocumento}"/>
                         <h:outputText value="#{bundle.ViewCuentaLabel_primerNombre}"/>
@@ -22,14 +26,22 @@
                         <h:outputText value="#{cuentaController.selected.primerApellido}" title="#{bundle.ViewCuentaTitle_primerApellido}"/>
                         <h:outputText value="#{bundle.ViewCuentaLabel_segundoApellido}"/>
                         <h:outputText value="#{cuentaController.selected.segundoApellido}" title="#{bundle.ViewCuentaTitle_segundoApellido}"/>
-                        <h:outputText value="#{bundle.ViewCuentaLabel_usuario}"/>
-                        <h:outputText value="#{cuentaController.selected.usuario}" title="#{bundle.ViewCuentaTitle_usuario}"/>
-                        <h:outputText value="#{bundle.ViewCuentaLabel_tipoDocumento}"/>
-                        <h:outputText value="#{cuentaController.selected.tipoDocumento}" title="#{bundle.ViewCuentaTitle_tipoDocumento}"/>
-                        <h:outputText value="#{bundle.ViewCuentaLabel_usuarioIdusuario}"/>
-                        <h:outputText value="#{cuentaController.selected.usuarioIdusuario}" title="#{bundle.ViewCuentaTitle_usuarioIdusuario}"/>
-                        <h:outputText value="#{bundle.ViewCuentaLabel_domicilioCuentas}"/>
-                        <h:outputText value="#{cuentaController.selected.domicilioCuentas}" title="#{bundle.ViewCuentaTitle_domicilioCuentas}"/>
+                        
+                        
+                        <h:outputText value="#{bundle.ViewCuentaLabel_domicilioTelefonoCuentas}"/>
+                        <h:outputText value="#{cuentaController.selected.domicilioCuentas.telefono}" title="#{bundle.ViewCuentaTitle_domicilioCuentas}"/>
+                        <h:outputText value="#{bundle.ViewCuentaLabel_domicilioCPCuentas}"/>
+                        <h:outputText value="#{cuentaController.selected.domicilioCuentas.correoPostal}" title="#{bundle.ViewCuentaTitle_domicilioCuentas}"/>
+                        <h:outputText value="#{bundle.ViewCuentaLabel_domicilioMunicipioCuentas}"/>
+                        <h:outputText value="#{cuentaController.selected.domicilioCuentas.MUNICIPIOidMUNICIPIO.nombreMunicipio}" title="#{bundle.ViewCuentaTitle_domicilioCuentas}"/>
+                        <h:outputText value="#{bundle.ViewCuentaLabel_domicilioDepartamentoCuentas}"/>
+                        <h:outputText value="#{cuentaController.selected.domicilioCuentas.MUNICIPIOidMUNICIPIO.DEPARTAMENTOidDEPARTAMENTO.nombreDepartamento}" title="#{bundle.ViewCuentaTitle_domicilioCuentas}"/>
+                        <h:outputText value="#{bundle.ViewCuentaLabel_domicilioBarrioCuentas}"/>
+                        <h:outputText value="#{cuentaController.selected.domicilioCuentas.barrio}" title="#{bundle.ViewCuentaTitle_domicilioCuentas}"/>
+                        <h:outputText value="#{bundle.ViewCuentaLabel_domicilioLocalidadCuentas}"/>
+                        <h:outputText value="#{cuentaController.selected.domicilioCuentas.localidad}" title="#{bundle.ViewCuentaTitle_domicilioCuentas}"/>
+                        <h:outputText value="#{bundle.ViewCuentaLabel_domicilioDireccionCuentas}"/>
+                        <h:outputText value="#{cuentaController.selected.domicilioCuentas.direccion}" title="#{bundle.ViewCuentaTitle_domicilioCuentas}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="CuentaViewDialog.hide()"/>
                 </h:panelGroup>

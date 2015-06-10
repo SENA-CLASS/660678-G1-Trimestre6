@@ -26,7 +26,13 @@
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
+                        
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentaTitle_tipoDocumento}"/>
+                            </f:facet>
+                             <h:outputText value="#{item.cuentaPK.tipoDocumentoTipoDocumento}"/>
+                        </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCuentaTitle_cuentaPK_numeroDocumento}"/>
@@ -57,29 +63,13 @@
                             </f:facet>
                             <h:outputText value="#{item.segundoApellido}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCuentaTitle_usuario}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.usuario}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCuentaTitle_tipoDocumento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tipoDocumento}"/>
-                        </p:column>
+                      
+                       
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCuentaTitle_usuarioIdusuario}"/>
                             </f:facet>
                             <h:outputText value="#{item.usuarioIdusuario}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListCuentaTitle_domicilioCuentas}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.domicilioCuentas}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cuentaController.prepareCreate}" update=":CuentaCreateForm" oncomplete="PF('CuentaCreateDialog').show()"/>

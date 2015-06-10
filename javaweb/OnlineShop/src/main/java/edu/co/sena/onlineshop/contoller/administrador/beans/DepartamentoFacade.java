@@ -42,4 +42,10 @@ public class DepartamentoFacade extends AbstractFacade<Departamento> {
         return query2.getResultList();
     }
     
+    public Departamento findByNombre(Object nombre) {
+        Query queryJPQL =getEntityManager().createNamedQuery("Departamento.findByNombreDepartamento");
+        queryJPQL.setParameter("nombreDepartamento",nombre);
+        return (Departamento)queryJPQL.getSingleResult();
+    }
+    
 }

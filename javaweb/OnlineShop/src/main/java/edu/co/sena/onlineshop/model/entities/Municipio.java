@@ -49,7 +49,7 @@ public class Municipio implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "mUNICIPIOidMUNICIPIO", fetch = FetchType.EAGER)
     private Collection<DomicilioProvee> domicilioProveeCollection;
     @JoinColumn(name = "DEPARTAMENTO_idDEPARTAMENTO", referencedColumnName = "idDEPARTAMENTO")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Departamento dEPARTAMENTOidDEPARTAMENTO;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "mUNICIPIOidMUNICIPIO", fetch = FetchType.EAGER)
     private Collection<DomicilioCuentas> domicilioCuentasCollection;
@@ -125,7 +125,7 @@ public class Municipio implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.onlineshop.model.entities.Municipio[ idMUNICIPIO=" + idMUNICIPIO + " ]";
+        return nombreMunicipio;
     }
     
 }

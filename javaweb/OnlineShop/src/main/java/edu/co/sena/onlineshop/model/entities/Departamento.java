@@ -44,7 +44,7 @@ public class Departamento implements Serializable {
     @Size(max = 45)
     @Column(name = "NOMBRE_DEPARTAMENTO")
     private String nombreDepartamento;
-    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, mappedBy = "dEPARTAMENTOidDEPARTAMENTO", fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, mappedBy = "dEPARTAMENTOidDEPARTAMENTO", fetch = FetchType.LAZY)
     private Collection<Municipio> municipioCollection;
 
     public Departamento() {

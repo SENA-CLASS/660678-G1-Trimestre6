@@ -27,6 +27,7 @@ public class UsuarioController implements Serializable {
     private edu.co.sena.onlineshop.contoller.administrador.beans.UsuarioFacade ejbFacade;
     private List<Usuario> items = null;
     private Usuario selected;
+    
 
     public UsuarioController() {
     }

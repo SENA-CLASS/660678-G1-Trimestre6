@@ -124,7 +124,7 @@ public class Catalogo implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.co.sena.onlineshop.model.entities.Catalogo[ idCatalogo=" + idCatalogo + " ]";
+        return nombreCatalogo;
     }
     
 }

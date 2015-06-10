@@ -4,8 +4,12 @@ import edu.co.sena.onlineshop.model.entities.Cuenta;
 import edu.co.sena.onlineshop.view.general.util.JsfUtil;
 import edu.co.sena.onlineshop.view.general.util.JsfUtil.PersistAction;
 import edu.co.sena.onlineshop.contoller.administrador.beans.CuentaFacade;
+import edu.co.sena.onlineshop.contoller.administrador.beans.DepartamentoFacade;
+import edu.co.sena.onlineshop.model.entities.Departamento;
+import edu.co.sena.onlineshop.model.entities.Municipio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,15 +22,22 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
 
 @Named("cuentaController")
-@SessionScoped
+@ViewScoped
 public class CuentaController implements Serializable {
 
     @EJB
     private edu.co.sena.onlineshop.contoller.administrador.beans.CuentaFacade ejbFacade;
+    @EJB
+    private edu.co.sena.onlineshop.contoller.administrador.beans.DepartamentoFacade ejbFacadeDepartamento;
     private List<Cuenta> items = null;
+    private List<Departamento> itemsDepartamento = null;
+    private List<Municipio> itemsMunicipio = null;
+    
     private Cuenta selected;
+    private String departamentoSeleccionado;
 
     public CuentaController() {
     }
@@ -40,7 +51,7 @@ public class CuentaController implements Serializable {
     }
 
     protected void setEmbeddableKeys() {
-        selected.getCuentaPK().setTipoDocumentoTipoDocumento(selected.getTipoDocumento().getTipoDocumento());
+        //selected.getCuentaPK().setTipoDocumentoTipoDocumento(selected.getTipoDocumento().getTipoDocumento());
     }
 
     protected void initializeEmbeddableKey() {
@@ -50,10 +61,15 @@ public class CuentaController implements Serializable {
     private CuentaFacade getFacade() {
         return ejbFacade;
     }
+    
+    private DepartamentoFacade getFacadeDepartamento() {
+        return ejbFacadeDepartamento;
+    }
 
     public Cuenta prepareCreate() {
         selected = new Cuenta();
         initializeEmbeddableKey();
+        obtenedorDepartamentos();
         return selected;
     }
 
@@ -74,6 +90,20 @@ public class CuentaController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+    }
+    
+    public void obtenedorDepartamentos() {
+        if(itemsDepartamento == null){
+             itemsDepartamento = (List<Departamento>)getFacadeDepartamento().findAll();
+        }   
+    }
+    
+    public void obtenedorMunicipios() {
+        
+          Departamento dt = getFacadeDepartamento().findByNombre(departamentoSeleccionado);
+          itemsMunicipio = (List<Municipio>)dt.getMunicipioCollection();
+        
+            
     }
 
     public List<Cuenta> getItems() {
@@ -122,6 +152,32 @@ public class CuentaController implements Serializable {
     public List<Cuenta> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+
+    public List<Departamento> getItemsDepartamento() {
+        return itemsDepartamento;
+    }
+
+    public void setItemsDepartamento(List<Departamento> itemsDepartamento) {
+        this.itemsDepartamento = itemsDepartamento;
+    }
+
+    public List<Municipio> getItemsMunicipio() {
+        return itemsMunicipio;
+    }
+
+    public void setItemsMunicipio(List<Municipio> itemsMunicipio) {
+        this.itemsMunicipio = itemsMunicipio;
+    }
+
+    public String getDepartamentoSeleccionado() {
+        return departamentoSeleccionado;
+    }
+
+    public void setDepartamentoSeleccionado(String departamentoSeleccionado) {
+        this.departamentoSeleccionado = departamentoSeleccionado;
+    }
+
+    
 
     @FacesConverter(forClass = Cuenta.class)
     public static class CuentaControllerConverter implements Converter {

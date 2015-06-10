@@ -39,8 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cuenta.findByPrimerNombre", query = "SELECT c FROM Cuenta c WHERE c.primerNombre = :primerNombre"),
     @NamedQuery(name = "Cuenta.findBySegundoNombre", query = "SELECT c FROM Cuenta c WHERE c.segundoNombre = :segundoNombre"),
     @NamedQuery(name = "Cuenta.findByPrimerApellido", query = "SELECT c FROM Cuenta c WHERE c.primerApellido = :primerApellido"),
-    @NamedQuery(name = "Cuenta.findBySegundoApellido", query = "SELECT c FROM Cuenta c WHERE c.segundoApellido = :segundoApellido"),
-    @NamedQuery(name = "Cuenta.findByUsuario", query = "SELECT c FROM Cuenta c WHERE c.usuario = :usuario")})
+    @NamedQuery(name = "Cuenta.findBySegundoApellido", query = "SELECT c FROM Cuenta c WHERE c.segundoApellido = :segundoApellido")})
 public class Cuenta implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -61,20 +60,15 @@ public class Cuenta implements Serializable {
     @Size(max = 45)
     @Column(name = "SEGUNDO_APELLIDO")
     private String segundoApellido;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "USUARIO")
-    private String usuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
     private Collection<Factura> facturaCollection;
     @JoinColumn(name = "TIPO_DOCUMENTO_TIPO_DOCUMENTO", referencedColumnName = "TIPO_DOCUMENTO", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private TipoDocumento tipoDocumento;
     @JoinColumn(name = "usuario_idusuario", referencedColumnName = "idusuario")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario usuarioIdusuario;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.LAZY)
     private DomicilioCuentas domicilioCuentas;
 
     public Cuenta() {
@@ -84,11 +78,11 @@ public class Cuenta implements Serializable {
         this.cuentaPK = cuentaPK;
     }
 
-    public Cuenta(CuentaPK cuentaPK, String primerNombre, String primerApellido, String usuario) {
+    public Cuenta(CuentaPK cuentaPK, String primerNombre, String primerApellido, Usuario usuario) {
         this.cuentaPK = cuentaPK;
         this.primerNombre = primerNombre;
         this.primerApellido = primerApellido;
-        this.usuario = usuario;
+        this.usuarioIdusuario = usuario;
     }
 
     public Cuenta(String tipoDocumentoTipoDocumento, String numeroDocumento) {
@@ -135,13 +129,7 @@ public class Cuenta implements Serializable {
         this.segundoApellido = segundoApellido;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
+   
 
     @XmlTransient
     public Collection<Factura> getFacturaCollection() {
